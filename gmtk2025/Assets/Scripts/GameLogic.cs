@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
 {
     public TMP_Text ageText;
+    public TMP_Text energyText;
     public Slider work;
     public Slider hobbies;
     public Slider social;
@@ -16,11 +17,13 @@ public class GameLogic : MonoBehaviour
     public float yearLength = 3.75f;
     float yearCounter = 0f;
     int year = 0;
-    public float maxSliderValue = 2f;
+    public int energy = 0;
+    public int maxEnergy = 20;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ageText.text = "Age: 0";
+        SliderChanged();
     }
 
     // Update is called once per frame
@@ -50,49 +53,10 @@ public class GameLogic : MonoBehaviour
         return;
     }
 
-    void ChangeValues(float cap, List<Slider> others)
+    public void SliderChanged()
     {
-        float currentSum = 0f;
-        foreach (Slider s in others)
-        {
-            currentSum += s.value;
-        }
-
-        foreach (Slider s in others)
-        {
-            s.value = s.value / currentSum * cap;
-        }
+        energy = maxEnergy - (int)(work.value + hobbies.value + social.value + exercise.value);
+        energyText.text = "Energy: " + energy + "/" + maxEnergy;
     }
 
-    public void WorkChanged()
-    {
-        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
-        {
-            ChangeValues(maxSliderValue - work.value, new List<Slider> { hobbies, exercise, social });
-        }
-    }
-
-    public void HobbiesChanged()
-    {
-        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
-        {
-            ChangeValues(maxSliderValue - hobbies.value, new List<Slider> { work, exercise, social });
-        }
-    }
-
-    public void SocialChanged()
-    {
-        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
-        {
-            ChangeValues(maxSliderValue - social.value, new List<Slider> { hobbies, exercise, work });
-        }
-    }
-
-    public void ExerciseChanged()
-    {
-        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
-        {
-            ChangeValues(maxSliderValue - exercise.value, new List<Slider> { hobbies, work, social });
-        }
-    }
 }
