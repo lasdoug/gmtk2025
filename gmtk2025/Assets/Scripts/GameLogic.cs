@@ -1,9 +1,15 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
     public TMP_Text ageText;
+    public Slider work;
+    public Slider hobbies;
+    public Slider social;
+    public Slider exercise;
     public float gameTime = 0f;
     public float gameTickSpeed = 0.1f;
     float tickCounter = 0f;
@@ -42,5 +48,51 @@ public class GameLogic : MonoBehaviour
     void GameTick()
     {
         return;
+    }
+
+    void ChangeValues(float cap, List<Slider> others)
+    {
+        float currentSum = 0f;
+        foreach (Slider s in others)
+        {
+            currentSum += s.value;
+        }
+
+        foreach (Slider s in others)
+        {
+            s.value = s.value / currentSum * cap;
+        }
+    }
+
+    public void WorkChanged()
+    {
+        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
+        {
+            ChangeValues(maxSliderValue - work.value, new List<Slider> { hobbies, exercise, social });
+        }
+    }
+
+    public void HobbiesChanged()
+    {
+        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
+        {
+            ChangeValues(maxSliderValue - hobbies.value, new List<Slider> { work, exercise, social });
+        }
+    }
+
+    public void SocialChanged()
+    {
+        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
+        {
+            ChangeValues(maxSliderValue - social.value, new List<Slider> { hobbies, exercise, work });
+        }
+    }
+
+    public void ExerciseChanged()
+    {
+        if (work.value + hobbies.value + social.value + exercise.value > maxSliderValue)
+        {
+            ChangeValues(maxSliderValue - exercise.value, new List<Slider> { hobbies, work, social });
+        }
     }
 }
