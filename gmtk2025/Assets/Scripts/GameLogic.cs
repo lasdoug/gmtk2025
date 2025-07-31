@@ -11,6 +11,10 @@ public class GameLogic : MonoBehaviour
     public Slider hobbies;
     public Slider social;
     public Slider exercise;
+    public TMP_Text happinessText;
+    public TMP_Text healthText;
+    public TMP_Text moneyText;
+    public TMP_Text satisfactionText;
     public float gameTime = 0f;
     public float gameTickSpeed = 0.1f;
     float tickCounter = 0f;
@@ -19,6 +23,10 @@ public class GameLogic : MonoBehaviour
     int year = 0;
     public int energy = 0;
     public int maxEnergy = 20;
+    public float happiness = 50f;
+    public float health = 90f;
+    public float money = 0f;
+    public float satisfaction = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,15 +56,34 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    void GameTick()
-    {
-        return;
-    }
-
     public void SliderChanged()
     {
         energy = maxEnergy - (int)(work.value + hobbies.value + social.value + exercise.value);
         energyText.text = "Energy: " + energy + "/" + maxEnergy;
+    }
+
+
+
+    void GameTick()
+    {
+        GenericStatUpdate();
+        UpdateStatText();
+    }
+
+    void GenericStatUpdate()
+    {
+        happiness += (social.value - 4) * 0.05f + Mathf.Min(10 - work.value, 0) * 0.1f;
+        health += (exercise.value - 2) * 0.025f;
+        money += (work.value - 5) * 0.05f - hobbies.value * 0.025f;
+        satisfaction += (hobbies.value) * 0.025f;
+    }
+
+    void UpdateStatText()
+    {
+        moneyText.text = "" + (int) money;
+        healthText.text = "" + (int) health;
+        happinessText.text = "" + (int) happiness;
+        satisfactionText.text = "" + (int) satisfaction;
     }
 
 }
