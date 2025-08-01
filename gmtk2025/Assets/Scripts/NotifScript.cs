@@ -47,7 +47,6 @@ public class NotifScript : MonoBehaviour
         }
         string[] tokens = str.Split(' ');
         string segment = "";
-        Debug.Log(maxWidth);
 
         foreach (string t in tokens)
         {
