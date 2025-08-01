@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
+    public bool isPaused = false;
+    public bool forcedPause = false;
     public TMP_Text ageText;
     public TMP_Text energyText;
     public Slider work;
@@ -37,6 +39,10 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //perform no updates if game is paused
+        if (isPaused || forcedPause) return;
+
+        // increment and check timers for different things
         gameTime += Time.deltaTime;
         tickCounter += Time.deltaTime;
         yearCounter += Time.deltaTime;
@@ -56,34 +62,41 @@ public class GameLogic : MonoBehaviour
 
     }
 
+    void OnPause()
+    {
+        isPaused = !isPaused;
+    }
+
+    // SliderChanged is called when you move any slider
     public void SliderChanged()
     {
         energy = maxEnergy - (int)(work.value + hobbies.value + social.value + exercise.value);
         energyText.text = "ENERGY: " + energy + "/" + maxEnergy;
     }
 
-
-
+    // GameTick is called based on gameTickSpeed. Updates occur here
     void GameTick()
     {
         GenericStatUpdate();
         UpdateStatText();
     }
 
-    void GenericStatUpdate()
-    {
-        happiness += (social.value - 4) * 0.05f + Mathf.Min(10 - work.value, 0) * 0.1f;
-        health += (exercise.value - 2) * 0.025f;
-        money += (work.value - 5) * 0.05f - hobbies.value * 0.025f;
-        satisfaction += (hobbies.value) * 0.025f;
-    }
-
+    // Controls what is displayed in happiness/health/money/meaning
     void UpdateStatText()
     {
         moneyText.text = "" + (int) money;
         healthText.text = "" + (int) health;
         happinessText.text = "" + (int) happiness;
         satisfactionText.text = "" + (int) satisfaction;
+    }
+
+    // StatUpdates control how your happiness/health/money/meaning changes over time
+    void GenericStatUpdate()
+    {
+        happiness += (social.value - 4) * 0.05f + Mathf.Min(10 - work.value, 0) * 0.1f;
+        health += (exercise.value - 2) * 0.025f;
+        money += (work.value - 5) * 0.05f - hobbies.value * 0.025f;
+        satisfaction += (hobbies.value) * 0.025f;
     }
 
 }
