@@ -153,7 +153,7 @@ MonoBehaviour:
   ageText: {fileID: 1976259984}
   energyText: {fileID: 752529433}
   work: {fileID: 200483153}
-  hobbies: {fileID: 161462835}
+  play: {fileID: 161462835}
   social: {fileID: 211408779}
   exercise: {fileID: 1589647047}
   happinessText: {fileID: 956169229}
@@ -164,11 +164,62 @@ MonoBehaviour:
   gameTickSpeed: 0.1
   yearLength: 3.75
   energy: 0
-  maxEnergy: 20
+  maxEnergy: 40
   happiness: 50
   health: 50
   money: 50
-  meaning: 0
+  meaning: 50
+  scaling: 0.1
+  dropoffMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
+  workMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
+  playMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
+  socialMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
+  exerciseMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
+  workWindows:
+  - {x: 3, y: 10, z: 1}
+  - {x: 0, y: 20, z: 6.53e-43}
+  - {x: 0, y: 20, z: 6.99774e+22}
+  - {x: 8, y: 15, z: 6.57e-43}
+  playWindows:
+  - {x: 0, y: 20, z: 1}
+  - {x: 20, y: 20, z: 6.53e-43}
+  - {x: 19, y: 20, z: 6.99774e+22}
+  - {x: 15, y: 20, z: 6.57e-43}
+  socialWindows:
+  - {x: 20, y: 15, z: 1}
+  - {x: 20, y: 2, z: 6.53e-43}
+  - {x: 20, y: 6, z: 6.99774e+22}
+  - {x: 20, y: 5, z: 6.57e-43}
+  exerciseWindows:
+  - {x: 12, y: 4, z: 1}
+  - {x: 20, y: 20, z: 6.53e-43}
+  - {x: 20, y: 5, z: 6.99774e+22}
+  - {x: 0, y: 0, z: 6.57e-43}
+  flatReductions:
+  - -0.1
+  - -0.1
+  - -0.1
+  - -0.1
   cumWork: 0
   cumHobbies: 0
   cumSocial: 0
@@ -2467,6 +2518,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 385318227}
     m_Modifications:
+    - target: {fileID: 467862106896982810, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951774799407062437, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436735740840390378, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009142184726228146, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095424148971304980, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306791184963533087, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6488428563498159261, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2547,9 +2622,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6587488413456148027, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624964257911245795, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659408375410290271, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904920263435476513, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185091138373987371, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8195635930455691165, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_Name
       value: ActiveEffects
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210885688923255720, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340351280925328541, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588651084369318447, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676964762078170338, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
