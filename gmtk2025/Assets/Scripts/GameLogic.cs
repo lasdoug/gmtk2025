@@ -87,6 +87,7 @@ public class GameLogic : MonoBehaviour
     void GameTick()
     {
         GenericStatUpdate();
+        UpdateCumulativeValues();
         UpdateStatText();
     }
 
