@@ -145,8 +145,8 @@ MonoBehaviour:
     luctus et ultrices posuere cubilia curae; Donec pharetra risus vel ante posuere
     dictum. Pellentesque pretium id neque sed auctor.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
-  m_sharedMaterial: {fileID: 3365050691610016935, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
+  m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -305,8 +305,8 @@ RectTransform:
   m_GameObject: {fileID: 6445723048457363583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3234596593945951488}
   m_Father: {fileID: 0}
@@ -443,6 +443,18 @@ PrefabInstance:
       propertyPath: m_text
       value: NO
       objectReference: {fileID: 0}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8158b0de1feefc444a40ddd739eada42, type: 2}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2681061654602027523, guid: 8158b0de1feefc444a40ddd739eada42, type: 2}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5441492343966852031, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -543,6 +555,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2574477741199916632, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8158b0de1feefc444a40ddd739eada42, type: 2}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2681061654602027523, guid: 8158b0de1feefc444a40ddd739eada42, type: 2}
+    - target: {fileID: 2622479506384976834, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5441492343966852031, guid: 76a178269cb1e554ab09bbfe3aa58cc2, type: 3}
