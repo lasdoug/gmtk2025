@@ -7,19 +7,21 @@ public class NotifScript : MonoBehaviour
 {
     public TMP_Text firstMessage, old1, old2, old3;
     string recent = "";
-    Stack messages = new Stack();
+    Queue messages = new Queue();
     float timer = 0f;
+    float maxWidth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         firstMessage.text = "...";
+        maxWidth = firstMessage.rectTransform.rect.width;
         old1.text = "";
         old2.text = "";
         old3.text = "";
-        PushMessage("Testing this thing");
-        PushMessage("Another message");
-        PushMessage("Lets do a long one to see what happens how long can we go");
-        PushMessage("One more thanks");
+        QueueMessage("Testing this thing");
+        QueueMessage("Another message");
+        QueueMessage("Lets do a long one to see what happens how long can we go");
+        QueueMessage("One more thanks");
     }
 
     // Update is called once per frame
@@ -31,14 +33,40 @@ public class NotifScript : MonoBehaviour
         {
             if (timer <= 0)
             {
-                DisplayNewMessage((string)messages.Pop());
+                DisplayNewMessage((string)messages.Dequeue());
             }
         }
     }
 
-    public void PushMessage(string str)
+    public void QueueMessage(string str)
     {
-        messages.Push(str);
+        if (firstMessage.GetPreferredValues(str).x <= maxWidth)
+        {
+            messages.Enqueue(str);
+            return; 
+        }
+        string[] tokens = str.Split(' ');
+        string segment = "";
+        Debug.Log(maxWidth);
+
+        foreach (string t in tokens)
+        {
+            if (segment == "")
+            {
+                segment = t;
+                continue;
+            }
+            if (firstMessage.GetPreferredValues(segment + " " + t).x > maxWidth)
+            {
+                messages.Enqueue(segment);
+                segment = t;
+            }
+            else
+            {
+                segment = segment + " " + t;
+            }
+        }
+        messages.Enqueue(segment);
     }
 
     void DisplayNewMessage(string str)
