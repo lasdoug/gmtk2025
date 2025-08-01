@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Older messages go here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
-  m_sharedMaterial: {fileID: 3365050691610016935, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
+  m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -293,8 +293,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Days blur. You feel you are in a <b>loop<b>.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
-  m_sharedMaterial: {fileID: 3365050691610016935, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
+  m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -429,8 +429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You learned to walk!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
-  m_sharedMaterial: {fileID: 3365050691610016935, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
+  m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -714,8 +714,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New messages go here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
-  m_sharedMaterial: {fileID: 3365050691610016935, guid: f90f19bff29100d498431d8d93c3061d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
+  m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

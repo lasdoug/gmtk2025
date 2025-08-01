@@ -30,7 +30,7 @@ public class GameLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ageText.text = "Age: 0";
+        ageText.text = "AGE: 0";
         SliderChanged();
     }
 
@@ -51,7 +51,7 @@ public class GameLogic : MonoBehaviour
         {
             yearCounter -= yearLength;
             year++;
-            ageText.text = "Age: " + year;
+            ageText.text = "AGE: " + year;
         }
 
     }
@@ -59,7 +59,7 @@ public class GameLogic : MonoBehaviour
     public void SliderChanged()
     {
         energy = maxEnergy - (int)(work.value + hobbies.value + social.value + exercise.value);
-        energyText.text = "Energy: " + energy + "/" + maxEnergy;
+        energyText.text = "ENERGY: " + energy + "/" + maxEnergy;
     }
 
 
