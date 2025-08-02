@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42854548cd3276c409dc257d86e06a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myText: {fileID: 0}
+  myText: {fileID: 463443174}
   cumHappiness: 0
   cumHealth: 0
   cumMoney: 0
