@@ -100,7 +100,7 @@ public class GameLogic : MonoBehaviour
         }
 
         bool AboveValues() {
-            return GameLogic.cumWork >= work && GameLogic.cumHobbies >= play && GameLogic.cumSocial >= social && GameLogic.cumExercise >= exercise && GameLogic.cumHappiness >= happiness && GameLogic.cumHealth >= health && GameLogic.cumMoney >= money && GameLogic.cumMeaning >= meaning;
+            return GameLogic.cumWork >= work && GameLogic.cumHobbies >= play && GameLogic.cumSocial >= social && GameLogic.cumExercise >= exercise && gameLogic.happiness >= happiness && gameLogic.health >= health && gameLogic.money >= money && gameLogic.meaning >= meaning;
         }
 
         public void SetMessage(string str)
