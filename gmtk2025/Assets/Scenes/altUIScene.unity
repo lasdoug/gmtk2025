@@ -1961,7 +1961,7 @@ GameObject:
   - component: {fileID: 923020448}
   m_Layer: 5
   m_Name: bkg
-  m_TagString: Untagged
+  m_TagString: guyBkg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2108,7 +2108,6 @@ MonoBehaviour:
   gameTime: 0
   gameTickSpeed: 0.1
   yearLength: 3.75
-  year: 0
   energy: 0
   maxEnergy: 40
   happiness: 50
@@ -2294,6 +2293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kidUpperBound: 2
   AdultUpperBound: 4
+  kidBkgColor: {r: 0.5294118, g: 0.58431375, b: 0.63529414, a: 1}
+  adultBkgColor: {r: 0.3254902, g: 0.27450982, b: 0.4117647, a: 1}
+  seniorBkgColor: {r: 0.36862746, g: 0.34117648, b: 0.30980393, a: 1}
 --- !u!114 &1171963313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
