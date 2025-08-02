@@ -28,7 +28,7 @@ public class GameLogic : MonoBehaviour
     float tickCounter = 0f;
     public float yearLength = 3.75f;
     float yearCounter = 0f;
-    int year = 0;
+    public static int year = 0;
     public int energy = 0;
     public int maxEnergy = 40;
     public float happiness = 50f;
@@ -55,12 +55,13 @@ public class GameLogic : MonoBehaviour
     Vector3[] exerciseWindows = { new Vector3(11, 6, 1), new Vector3(20, 18, 1), new Vector3(20, 5, 0), new Vector3(0, 0, 0) };
     float[] flatReductions = { -0.1f, -0.1f, -0.8f, -0.1f };
     float[] energyPenaltyMultipliers = { 1, 1, 1, 0.05f };
+
     List<Func<float>> calculateHappiness = new();
     List<Func<float>> calculateHealth = new();
     List<Func<float>> calculateMoney = new();
     List<Func<float>> calculateMeaning = new();
 
-    public float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
+    public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
 
     List<DialogueEvent> dialogueEvents = new();
 
@@ -163,6 +164,8 @@ public class GameLogic : MonoBehaviour
         ageText.text = "AGE: 0";
         animator = new DOTweenTMPAnimator(energyText);
         SliderChanged();
+        multipliersArray = new float[][] { workMultipliers, playMultipliers, socialMultipliers, exerciseMultipliers };
+        windowsArray = new Vector3[][] { workWindows, playWindows, socialWindows, exerciseWindows };
 
         calculateHappiness.Add(WorkHappinessGain);
         calculateHappiness.Add(PlayHappinessGain);
@@ -516,6 +519,20 @@ public class GameLogic : MonoBehaviour
     float MeaningFlatReduction()
     {
         return flatReductions[3] * scaling;
+    }
+
+    //call this when starting another run
+    //probably call other stuff too tbh
+    void resetCumValues()
+    {
+        cumWork = 0;
+        cumHobbies = 0;
+        cumSocial = 0;
+        cumExercise = 0;
+        cumHappiness = 0;
+        cumHealth = 0;
+        cumMoney = 0;
+        cumMeaning = 0;
     }
 
 }
