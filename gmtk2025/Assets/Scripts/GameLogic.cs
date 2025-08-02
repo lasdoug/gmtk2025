@@ -126,7 +126,7 @@ public class GameLogic : MonoBehaviour
             yearCounter -= yearLength;
             year++;
             ageText.text = "AGE: " + year;
-            Debug.Log(cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
+            // Debug.Log(cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
         }
 
     }
@@ -187,7 +187,7 @@ public class GameLogic : MonoBehaviour
         health += hltGain;
         money += monGain;
         meaning += mngGain;
-        Debug.Log(hapGain);
+        // Debug.Log(hapGain);
     }
 
     void UpdateStatText()
