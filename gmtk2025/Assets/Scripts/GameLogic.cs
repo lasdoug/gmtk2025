@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
 {
     public GameObject pauseOverlay;
+    public StatBlockScript happinessDisplay, healthDisplay, moneyDisplay, meaningDisplay;
     bool isPaused = false;
     bool forcedPause = false;
     public TMP_Text ageText;
@@ -27,7 +28,7 @@ public class GameLogic : MonoBehaviour
     public float gameTickSpeed = 0.1f;
     float tickCounter = 0f;
     public float yearLength = 3.75f;
-    float yearCounter = 0f;
+    public float yearCounter = 0f;
     public static int year = 0;
     public int energy = 0;
     public int maxEnergy = 40;
@@ -47,7 +48,7 @@ public class GameLogic : MonoBehaviour
     float[] workMultipliers = { 0.5f, -0.3f, 0.4f, 0.1f };
     float[] playMultipliers = { 0.4f, 1, -1, 0.1f };
     float[] socialMultipliers = { 0.4f, -1, -1, 0.1f };
-    float[] exerciseMultipliers = { 0.1f, 0.5f, -1, 0.1f };
+    float[] exerciseMultipliers = { 0.1f, 0.4f, -1, 0.1f };
     // Vector3(mean, variance, mode)
     // mode: 0 no penalty, 1 penalty
     Vector3[] workWindows = { new Vector3(6, 2, 1), new Vector3(20, 15, 0), new Vector3(20, 19, 1), new Vector3(12, 3, 0) };
@@ -69,13 +70,13 @@ public class GameLogic : MonoBehaviour
     class DialogueEvent
     {
         GameLogic gameLogic;
-        public float occurTime, upper;
+        public float lower, upper;
         public float chance, work = 0, play = 0, social = 0, exercise = 0, happiness = 0, health = 0, money = 0, meaning = 0, happinesschange = 0, healthchange = 0, moneychange = 0, meaningchange = 0;
         public string message;
         public DialogueEvent(int lowerAge, int upperAge, float chanceOfOccurance)
         {
-            occurTime = UnityEngine.Random.Range(lowerAge, upperAge);
-            upper = upperAge;
+            lower = lowerAge + UnityEngine.Random.Range(0f, 0.5f);
+            upper = upperAge + UnityEngine.Random.Range(-0.5f, 0.5f);
             chance = chanceOfOccurance;
             gameLogic = FindAnyObjectByType<GameLogic>();
         }
@@ -83,8 +84,9 @@ public class GameLogic : MonoBehaviour
         public void Check()
         {
             if (chance <= 0) return;
-            if (GameLogic.year >= occurTime && GameLogic.year <= upper && AboveValues())
+            if (GameLogic.year + gameLogic.yearCounter/gameLogic.yearLength >= lower && GameLogic.year + gameLogic.yearCounter/gameLogic.yearLength <= upper && AboveValues())
             {
+                Debug.Log(message);
                 if (UnityEngine.Random.Range(0f, 1f) <= chance)
                 {
                     gameLogic.Send(message);
@@ -201,11 +203,12 @@ public class GameLogic : MonoBehaviour
         newEvent.SetSocial(0.4f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(7, 14, 0.25f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(6,13), 14, 0.25f);
         newEvent.SetMessage("You found £20 on the floor.");
         newEvent.SetMoneyChange(3f);
         dialogueEvents.Add(newEvent);
 
+        Debug.Log(dialogueEvents.Count);
     }
 
     // Update is called once per frame
@@ -309,10 +312,24 @@ public class GameLogic : MonoBehaviour
         {
             mngGain += func.Invoke();
         }
-        happiness += hapGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0];
-        health += hltGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1];
-        money += monGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2];
-        meaning += mngGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3];
+        hapGain += Mathf.Min((float)energy, 0f) * scaling * energyPenaltyMultipliers[0];
+        hltGain += Mathf.Min((float)energy, 0f) * scaling * energyPenaltyMultipliers[1];
+        monGain += Mathf.Min((float)energy, 0f) * scaling * energyPenaltyMultipliers[2];
+        mngGain += Mathf.Min((float)energy, 0f) * scaling * energyPenaltyMultipliers[3];
+        if (happiness < 0 && hapGain < 0) hapGain = 0;
+        if (health < 0 && hltGain < 0) hltGain = 0;
+        if (money < 0 && monGain < 0) monGain = 0;
+        if (meaning < 0 && mngGain < 0) mngGain = 0;
+        happinessDisplay.Rate(hapGain);
+        healthDisplay.Rate(hltGain);
+        moneyDisplay.Rate(monGain);
+        meaningDisplay.Rate(mngGain);
+
+        happiness += hapGain;
+        health += hltGain;
+        money += monGain;
+        meaning += mngGain;
+        
         //Debug.Log(hapGain);
     }
 
