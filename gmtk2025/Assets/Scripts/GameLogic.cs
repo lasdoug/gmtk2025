@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using Mono.Cecil.Cil;
 using TMPro;
 using Unity.Multiplayer.Center.Common;
 using UnityEngine;
@@ -41,20 +42,27 @@ public class GameLogic : MonoBehaviour
     public float[] playMultipliers = { 1, 1, -1, 1 };
     public float[] socialMultipliers = { 1, -1, -1, 1 };
     public float[] exerciseMultipliers = { 0.5f, 1, -1, 1 };
+    private float[][] multipliersArray;
     // Vector3(mean, variance, mode)
     // mode: 0 no penalty, 1 penalty
     public Vector3[] workWindows = { new Vector3(7, 4, 1), new Vector3(20, 15, 0), new Vector3(20, 19, 1), new Vector3(12, 3, 0) };
     public Vector3[] playWindows = { new Vector3(20, 20, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(17, 3, 0) };
     public Vector3[] socialWindows = { new Vector3(20, 15, 1), new Vector3(20, 2, 0), new Vector3(20, 6, 0), new Vector3(20, 5, 0) };
     public Vector3[] exerciseWindows = { new Vector3(12, 4, 1), new Vector3(20, 18, 1), new Vector3(20, 5, 0), new Vector3(0, 0, 0) };
+    private Vector3[][] windowsArray;
     public float[] flatReductions = { -0.1f, -0.1f, -0.1f, -0.1f };
     List<Func<float>> calculateHappiness = new();
     List<Func<float>> calculateHealth = new();
     List<Func<float>> calculateMoney = new();
     List<Func<float>> calculateMeaning = new();
 
-
-
+    public enum options
+    {
+        workE = 0,
+        playE = 1,
+        socialE = 2,
+        exerciseE = 3
+    }
 
     public float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -62,6 +70,8 @@ public class GameLogic : MonoBehaviour
     {
         ageText.text = "AGE: 0";
         SliderChanged();
+        multipliersArray = new float[][] { workMultipliers, playMultipliers, socialMultipliers, exerciseMultipliers };
+        windowsArray = new Vector3[][] { workWindows, playWindows, socialWindows, exerciseWindows };
 
         calculateHappiness.Add(WorkHappinessGain);
         calculateHappiness.Add(PlayHappinessGain);
@@ -203,6 +213,15 @@ public class GameLogic : MonoBehaviour
         gain += playWindows[0].y - Mathf.Abs(play.value - playWindows[0].x);
         if (gain < 0 && playWindows[0].z == 0) gain = 0;
         gain *= scaling * playMultipliers[0];
+        return gain;
+    }
+
+    float AnyGain(int arrayIndex)
+    {
+        float gain = 0;
+        gain += windowsArray[arrayIndex][0].y - Mathf.Abs(play.value - windowsArray[arrayIndex][0].x);
+        if (gain < 0 && windowsArray[arrayIndex][0].z == 0) gain = 0;
+        gain *= scaling * multipliersArray[arrayIndex][0];
         return gain;
     }
 
