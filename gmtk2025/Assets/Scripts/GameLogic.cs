@@ -56,15 +56,7 @@ public class GameLogic : MonoBehaviour
     List<Func<float>> calculateMoney = new();
     List<Func<float>> calculateMeaning = new();
 
-    public enum options
-    {
-        workE = 0,
-        playE = 1,
-        socialE = 2,
-        exerciseE = 3
-    }
-
-    public float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
+    public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -216,15 +208,6 @@ public class GameLogic : MonoBehaviour
         return gain;
     }
 
-    float AnyGain(int arrayIndex)
-    {
-        float gain = 0;
-        gain += windowsArray[arrayIndex][0].y - Mathf.Abs(play.value - windowsArray[arrayIndex][0].x);
-        if (gain < 0 && windowsArray[arrayIndex][0].z == 0) gain = 0;
-        gain *= scaling * multipliersArray[arrayIndex][0];
-        return gain;
-    }
-
     float SocialHappinessGain()
     {
         float gain = 0;
@@ -369,6 +352,20 @@ public class GameLogic : MonoBehaviour
     float MeaningFlatReduction()
     {
         return flatReductions[3] * scaling;
+    }
+
+    //call this when starting another run
+    //probably call other stuff too tbh
+    void resetCumValues()
+    {
+        cumWork = 0;
+        cumHobbies = 0;
+        cumSocial = 0;
+        cumExercise = 0;
+        cumHappiness = 0;
+        cumHealth = 0;
+        cumMoney = 0;
+        cumMeaning = 0;
     }
 
 }
