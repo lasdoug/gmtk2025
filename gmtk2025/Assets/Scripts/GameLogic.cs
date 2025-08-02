@@ -67,13 +67,13 @@ public class GameLogic : MonoBehaviour
     class DialogueEvent
     {
         GameLogic gameLogic;
-        public float lower, upper;
+        public float occurTime, upper;
         public float chance, work = 0, play = 0, social = 0, exercise = 0, happiness = 0, health = 0, money = 0, meaning = 0, happinesschange = 0, healthchange = 0, moneychange = 0, meaningchange = 0;
         public string message;
         public DialogueEvent(int lowerAge, int upperAge, float chanceOfOccurance)
         {
-            lower = lowerAge + UnityEngine.Random.Range(0f, 0.5f);
-            upper = upperAge + UnityEngine.Random.Range(-0.5f, 0.5f);
+            occurTime = UnityEngine.Random.Range(lowerAge, upperAge);
+            upper = upperAge;
             chance = chanceOfOccurance;
             gameLogic = FindAnyObjectByType<GameLogic>();
         }
@@ -81,7 +81,7 @@ public class GameLogic : MonoBehaviour
         public void Check()
         {
             if (chance <= 0) return;
-            if (gameLogic.year >= lower && gameLogic.year <= upper && AboveValues())
+            if (gameLogic.year >= occurTime && gameLogic.year <= upper && AboveValues())
             {
                 if (UnityEngine.Random.Range(0f, 1f) <= chance)
                 {
