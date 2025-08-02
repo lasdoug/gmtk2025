@@ -34,7 +34,6 @@ public class GameLogic : MonoBehaviour
     public float health = 90f;
     public float money = 0f;
     public float meaning = 0f;
-
     public float scaling = 0.1f;
     public float[] dropoffMultipliers = { 1, 1, 1, 1 };
     // HAPPINESS , HEALTH , MONEY , MEANING
