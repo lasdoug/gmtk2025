@@ -6,11 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:gmtk2025/Assets/Images/animations/elder-walk.anim
   m_Name: elder-walk
-========
-  m_Name: babyWalk
->>>>>>>> louis:gmtk2025/Assets/Images/animations/clips-and-controllers/babyWalk.anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -25,7 +21,6 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-<<<<<<<< HEAD:gmtk2025/Assets/Images/animations/elder-walk.anim
       value: {fileID: 4817144559832909180, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - time: 0.5
       value: {fileID: -6908477419847238756, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
@@ -35,17 +30,6 @@ AnimationClip:
       value: {fileID: -8439784007415716209, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - time: 2
       value: {fileID: 4817144559832909180, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
-========
-      value: {fileID: -863595832, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - time: 0.25
-      value: {fileID: -416473557, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - time: 0.5
-      value: {fileID: 1241401746, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - time: 0.75
-      value: {fileID: 436527918, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - time: 1
-      value: {fileID: -863595832, guid: c0c3403cabf53744cabc970369df4229, type: 3}
->>>>>>>> louis:gmtk2025/Assets/Images/animations/clips-and-controllers/babyWalk.anim
     attribute: m_Sprite
     path: 
     classID: 114
@@ -68,19 +52,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-<<<<<<<< HEAD:gmtk2025/Assets/Images/animations/elder-walk.anim
     - {fileID: 4817144559832909180, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - {fileID: -6908477419847238756, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - {fileID: -6383652697889881341, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - {fileID: -8439784007415716209, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
     - {fileID: 4817144559832909180, guid: 612569f83e415e24cb56802d6ba26d43, type: 3}
-========
-    - {fileID: -863595832, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - {fileID: -416473557, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - {fileID: 1241401746, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - {fileID: 436527918, guid: c0c3403cabf53744cabc970369df4229, type: 3}
-    - {fileID: -863595832, guid: c0c3403cabf53744cabc970369df4229, type: 3}
->>>>>>>> louis:gmtk2025/Assets/Images/animations/clips-and-controllers/babyWalk.anim
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

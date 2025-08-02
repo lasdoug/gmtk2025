@@ -127,8 +127,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 175
-        height: 110
+        width: 150
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: char-adult-walk_1
       rect:
         serializedVersion: 2
-        x: 175
+        x: 150
         y: 0
-        width: 175
-        height: 110
+        width: 150
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: char-adult-walk_2
       rect:
         serializedVersion: 2
-        x: 350
+        x: 300
         y: 0
-        width: 175
-        height: 110
+        width: 150
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: char-adult-walk_3
       rect:
         serializedVersion: 2
-        x: 525
+        x: 450
         y: 0
-        width: 175
-        height: 110
+        width: 150
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
