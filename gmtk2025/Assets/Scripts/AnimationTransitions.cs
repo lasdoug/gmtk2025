@@ -1,25 +1,23 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class AnimationTransitions : MonoBehaviour
 {
-    GameLogic gameLogic;
     Animator animator;
     int age;
-    bool isBaby, isAdult, isSenior;
     [SerializeField] int kidUpperBound, AdultUpperBound;
+    Image guyBkg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
-        gameLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameLogic>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        age = gameLogic.year;
+        age = GameLogic.year;
 
         if (age < kidUpperBound)
         {
