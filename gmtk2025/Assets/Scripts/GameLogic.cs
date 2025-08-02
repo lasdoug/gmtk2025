@@ -308,10 +308,10 @@ public class GameLogic : MonoBehaviour
         {
             mngGain += func.Invoke();
         }
-        happiness += hapGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0];
-        health += hltGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1];
-        money += monGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2];
-        meaning += mngGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3];
+        happiness += Mathf.Max(happiness + hapGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0], 0);
+        health += Mathf.Max(health + hltGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1], 0);
+        money += Mathf.Max(money + monGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2], 0);
+        meaning += Mathf.Max(meaning + mngGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3], 0);
         //Debug.Log(hapGain);
     }
 
