@@ -10,13 +10,12 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - WNT Bark
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 441bfea578e0adc499af68dc531360a3, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
-  shouldRoundAdvanceValue: 1
+  shouldRoundAdvanceValue: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
