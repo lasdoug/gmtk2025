@@ -66,6 +66,7 @@ public class GameLogic : MonoBehaviour
     public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
 
     List<DialogueEvent> dialogueEvents = new();
+    string[] firstWords = { "throat", "rice", "car", "noodles", "momma", "dad", "celery", "fresco", "conglomerate", "yes", "no" };
 
     class DialogueEvent
     {
@@ -84,7 +85,7 @@ public class GameLogic : MonoBehaviour
         public void Check()
         {
             if (chance <= 0) return;
-            if (GameLogic.year + gameLogic.yearCounter/gameLogic.yearLength >= lower && GameLogic.year + gameLogic.yearCounter/gameLogic.yearLength <= upper && AboveValues())
+            if (GameLogic.year + gameLogic.yearCounter / gameLogic.yearLength >= lower && GameLogic.year + gameLogic.yearCounter / gameLogic.yearLength <= upper && AboveValues())
             {
                 Debug.Log(message);
                 if (UnityEngine.Random.Range(0f, 1f) <= chance)
@@ -99,7 +100,8 @@ public class GameLogic : MonoBehaviour
             }
         }
 
-        bool AboveValues() {
+        bool AboveValues()
+        {
             return GameLogic.cumWork >= work && GameLogic.cumHobbies >= play && GameLogic.cumSocial >= social && GameLogic.cumExercise >= exercise && gameLogic.happiness >= happiness && gameLogic.health >= health && gameLogic.money >= money && gameLogic.meaning >= meaning;
         }
 
@@ -199,7 +201,7 @@ public class GameLogic : MonoBehaviour
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(1, 100, 1);
-        newEvent.SetMessage("You learned to talk. Your first word is very impressive.");
+        newEvent.SetMessage("You learned to talk. Your first word is " + firstWords[UnityEngine.Random.Range(0,firstWords.Length)] + ".");
         newEvent.SetSocial(0.72f);
         dialogueEvents.Add(newEvent);
 
