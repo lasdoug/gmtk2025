@@ -82,7 +82,7 @@ public class GameLogic : MonoBehaviour
         public void Check()
         {
             if (chance <= 0) return;
-            if (gameLogic.year >= occurTime && gameLogic.year <= upper && AboveValues())
+            if (GameLogic.year >= occurTime && GameLogic.year <= upper && AboveValues())
             {
                 if (UnityEngine.Random.Range(0f, 1f) <= chance)
                 {
@@ -97,7 +97,7 @@ public class GameLogic : MonoBehaviour
         }
 
         bool AboveValues() {
-            return gameLogic.cumWork >= work && gameLogic.cumHobbies >= play && gameLogic.cumSocial >= social && gameLogic.cumExercise >= exercise && gameLogic.cumHappiness >= happiness && gameLogic.cumHealth >= health && gameLogic.cumMoney >= money && gameLogic.cumMeaning >= meaning;
+            return GameLogic.cumWork >= work && GameLogic.cumHobbies >= play && GameLogic.cumSocial >= social && GameLogic.cumExercise >= exercise && GameLogic.cumHappiness >= happiness && GameLogic.cumHealth >= health && GameLogic.cumMoney >= money && GameLogic.cumMeaning >= meaning;
         }
 
         public void SetMessage(string str)
@@ -164,8 +164,6 @@ public class GameLogic : MonoBehaviour
         ageText.text = "AGE: 0";
         animator = new DOTweenTMPAnimator(energyText);
         SliderChanged();
-        multipliersArray = new float[][] { workMultipliers, playMultipliers, socialMultipliers, exerciseMultipliers };
-        windowsArray = new Vector3[][] { workWindows, playWindows, socialWindows, exerciseWindows };
 
         calculateHappiness.Add(WorkHappinessGain);
         calculateHappiness.Add(PlayHappinessGain);
