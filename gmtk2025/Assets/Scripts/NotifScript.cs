@@ -18,10 +18,6 @@ public class NotifScript : MonoBehaviour
         old1.text = "";
         old2.text = "";
         old3.text = "";
-        QueueMessage("Testing this thing");
-        QueueMessage("Another message");
-        QueueMessage("Lets do a long one to see what happens how long can we go");
-        QueueMessage("One more thanks");
     }
 
     // Update is called once per frame
