@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using DG.Tweening;
 using TMPro;
+using Unity.Collections;
 using Unity.Multiplayer.Center.Common;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,9 @@ public class GameLogic : MonoBehaviour
     public float money = 0f;
     public float meaning = 0f;
     bool energyTweening = false;
+    DOTweenTMPAnimator animator;
+    Sequence energyTextTween;
+    NotifScript dialogueBox;
 
     public float scaling = 0.1f;
     public float[] dropoffMultipliers = { 1, 1, 1, 1 };
@@ -50,20 +54,114 @@ public class GameLogic : MonoBehaviour
     Vector3[] socialWindows = { new Vector3(20, 15, 1), new Vector3(20, 2, 0), new Vector3(20, 6, 0), new Vector3(20, 5, 0) };
     Vector3[] exerciseWindows = { new Vector3(11, 6, 1), new Vector3(20, 18, 1), new Vector3(20, 5, 0), new Vector3(0, 0, 0) };
     float[] flatReductions = { -0.1f, -0.1f, -0.8f, -0.1f };
-    float[] energyPenaltyMultipliers = { 1, 1, 1, 1 };
+    float[] energyPenaltyMultipliers = { 1, 1, 1, 0.05f };
     List<Func<float>> calculateHappiness = new();
     List<Func<float>> calculateHealth = new();
     List<Func<float>> calculateMoney = new();
     List<Func<float>> calculateMeaning = new();
 
-
-
-
     public float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
+
+    List<DialogueEvent> dialogueEvents = new();
+
+    class DialogueEvent
+    {
+        GameLogic gameLogic;
+        public float lower, upper;
+        public float chance, work = 0, play = 0, social = 0, exercise = 0, happiness = 0, health = 0, money = 0, meaning = 0, happinesschange = 0, healthchange = 0, moneychange = 0, meaningchange = 0;
+        public string message;
+        public DialogueEvent(int lowerAge, int upperAge, float chanceOfOccurance)
+        {
+            lower = lowerAge + UnityEngine.Random.Range(0f, 0.5f);
+            upper = upperAge + UnityEngine.Random.Range(-0.5f, 0.5f);
+            chance = chanceOfOccurance;
+            gameLogic = FindAnyObjectByType<GameLogic>();
+        }
+
+        public void Check()
+        {
+            if (chance <= 0) return;
+            if (gameLogic.year >= lower && gameLogic.year <= upper && AboveValues())
+            {
+                if (UnityEngine.Random.Range(0f, 1f) <= chance)
+                {
+                    gameLogic.Send(message);
+                    gameLogic.happiness += happinesschange;
+                    gameLogic.health += healthchange;
+                    gameLogic.money += moneychange;
+                    gameLogic.meaning += meaningchange;
+                }
+                chance = -1;
+            }
+        }
+
+        bool AboveValues() {
+            return gameLogic.cumWork >= work && gameLogic.cumHobbies >= play && gameLogic.cumSocial >= social && gameLogic.cumExercise >= exercise && gameLogic.cumHappiness >= happiness && gameLogic.cumHealth >= health && gameLogic.cumMoney >= money && gameLogic.cumMeaning >= meaning;
+        }
+
+        public void SetMessage(string str)
+        {
+            message = str;
+        }
+
+        public void SetWork(float x)
+        {
+            work = x;
+        }
+        public void SetPlay(float x)
+        {
+            play = x;
+        }
+        public void SetSocial(float x)
+        {
+            social = x;
+        }
+        public void SetExercise(float x)
+        {
+            exercise = x;
+        }
+        public void SetHappiness(float x)
+        {
+            happiness = x;
+        }
+        public void SetHealth(float x)
+        {
+            health = x;
+        }
+        public void SetMoney(float x)
+        {
+            money = x;
+        }
+        public void SetMeaning(float x)
+        {
+            meaning = x;
+        }
+        public void SetHappinessChange(float x)
+        {
+            happinesschange = x;
+        }
+        public void SetHealthChange(float x)
+        {
+            healthchange = x;
+        }
+        public void SetMoneyChange(float x)
+        {
+            moneychange = x;
+        }
+        public void SetMeaningChange(float x)
+        {
+            meaningchange = x;
+        }
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        dialogueBox = FindAnyObjectByType<NotifScript>();
+        Send("You are born. Hello World.");
         ageText.text = "AGE: 0";
+        animator = new DOTweenTMPAnimator(energyText);
         SliderChanged();
 
         calculateHappiness.Add(WorkHappinessGain);
@@ -90,6 +188,21 @@ public class GameLogic : MonoBehaviour
         calculateMeaning.Add(ExerciseMeaningGain);
         calculateMeaning.Add(MeaningFlatReduction);
 
+        DialogueEvent newEvent;
+        newEvent = new DialogueEvent(0, 100, 1);
+        newEvent.SetExercise(0.35f);
+        newEvent.SetMessage("You learned to walk.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(0, 100, 1);
+        newEvent.SetMessage("You learned to talk.");
+        newEvent.SetSocial(0.4f);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(7, 14, 0.25f);
+        newEvent.SetMessage("You found £20 on the floor.");
+        newEvent.SetMoneyChange(3f);
+        dialogueEvents.Add(newEvent);
 
     }
 
@@ -121,7 +234,7 @@ public class GameLogic : MonoBehaviour
             yearCounter -= yearLength;
             year++;
             ageText.text = "AGE: " + year;
-            //Debug.Log(cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
+            Debug.Log("Cumulative values: "+cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
         }
 
     }
@@ -138,12 +251,12 @@ public class GameLogic : MonoBehaviour
         energyText.text = "ENERGY: " + energy + "/" + maxEnergy;
         if (energy < 0 && !energyTweening)
         {
-            TweenText(energyText, 6);
+            TweenText();
             energyTweening = true;
         }
         else if (energy >= 0 && energyTweening)
         {
-            energyText.DOKill();
+            energyTextTween.Kill();
             energyTweening = false;
         }
     }
@@ -154,18 +267,24 @@ public class GameLogic : MonoBehaviour
         StatUpdate();
         UpdateCumulativeValues();
         UpdateStatText();
+        DoChecks();
+    }
+
+    void Send(string str)
+    {
+        dialogueBox.QueueMessage(str);
     }
 
     void UpdateCumulativeValues()
     {
-        cumWork += work.value * gameTickSpeed * 0.01f;
-        cumHobbies += play.value * gameTickSpeed * 0.01f;
-        cumSocial += social.value * gameTickSpeed * 0.01f;
-        cumExercise += exercise.value * gameTickSpeed * 0.01f;
-        cumHappiness += (happiness - 30) * gameTickSpeed * 0.01f;
-        cumHealth += (health - 30) * gameTickSpeed * 0.01f;
-        cumMoney += money * gameTickSpeed * 0.01f;
-        cumMeaning += meaning * gameTickSpeed * 0.01f;
+        cumWork += work.value * gameTickSpeed / scaling * 0.001f;
+        cumHobbies += play.value * gameTickSpeed / scaling * 0.001f;
+        cumSocial += social.value * gameTickSpeed / scaling * 0.001f;
+        cumExercise += exercise.value * gameTickSpeed / scaling * 0.001f;
+        cumHappiness += (happiness - 30) * gameTickSpeed / scaling * 0.001f;
+        cumHealth += (health - 30) * gameTickSpeed / scaling * 0.001f;
+        cumMoney += money * gameTickSpeed / scaling * 0.001f;
+        cumMeaning += meaning * gameTickSpeed / scaling * 0.001f;
     }
 
     //StatUpdates change money etc
@@ -188,10 +307,10 @@ public class GameLogic : MonoBehaviour
         {
             mngGain += func.Invoke();
         }
-        happiness += hapGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0];
-        health += hltGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1];
-        money += monGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2];
-        meaning += mngGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3];
+        happiness += hapGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0];
+        health += hltGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1];
+        money += monGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2];
+        meaning += mngGain + Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3];
         //Debug.Log(hapGain);
     }
 
@@ -203,17 +322,25 @@ public class GameLogic : MonoBehaviour
         meaningText.text = "" + (int)meaning;
     }
 
-    void TweenText(TMP_Text text, int chars)
+    void TweenText()
     {
-        DOTweenTMPAnimator animator = new DOTweenTMPAnimator(text);
-        Sequence sequence = DOTween.Sequence();
-        for (int i = 0; i < chars; ++i)
+        energyTextTween = DOTween.Sequence();
+        for (int i = 0; i < 6; ++i)
         {
             if (!animator.textInfo.characterInfo[i].isVisible) continue;
-            sequence.Join(animator.DOShakeCharOffset(i, 0.1f, 2f, 7, 45f));
+            energyTextTween.Join(animator.DOShakeCharOffset(i, 0.1f, 2f, 7, 45f));
         }
-        sequence.SetLoops(-1, LoopType.Restart);
+        energyTextTween.SetLoops(-1, LoopType.Restart);
     }
+
+    void DoChecks()
+    {
+        foreach (DialogueEvent e in dialogueEvents)
+        {
+            e.Check();
+        }
+    }
+
 
     float WorkHappinessGain()
     {
@@ -301,7 +428,7 @@ public class GameLogic : MonoBehaviour
         gain += workWindows[2].y - Mathf.Abs(work.value - workWindows[2].x);
         if (gain < 0 && workWindows[2].z == 0) gain = 0;
         gain *= scaling * workMultipliers[2];
-        Debug.Log(gain);
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -311,7 +438,7 @@ public class GameLogic : MonoBehaviour
         gain += playWindows[2].y - Mathf.Abs(play.value - playWindows[2].x);
         if (gain < 0 && playWindows[2].z == 0) gain = 0;
         gain *= scaling * playMultipliers[2];
-        Debug.Log(gain);
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -321,7 +448,7 @@ public class GameLogic : MonoBehaviour
         gain += socialWindows[2].y - Mathf.Abs(social.value - socialWindows[2].x);
         if (gain < 0 && socialWindows[2].z == 0) gain = 0;
         gain *= scaling * socialMultipliers[2];
-        Debug.Log(gain);
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -331,7 +458,7 @@ public class GameLogic : MonoBehaviour
         gain += exerciseWindows[2].y - Mathf.Abs(exercise.value - exerciseWindows[2].x);
         if (gain < 0 && exerciseWindows[2].z == 0) gain = 0;
         gain *= scaling * exerciseMultipliers[2];
-        Debug.Log(gain);
+        //Debug.Log(gain);
         return gain;
     }
 
