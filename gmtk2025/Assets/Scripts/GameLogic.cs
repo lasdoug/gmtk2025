@@ -163,7 +163,7 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
         dialogueBox = FindAnyObjectByType<NotifScript>();
-        Send("You are born. Hello World.");
+        Send("You are born. Hello, world.");
         ageText.text = "AGE: 0";
         animator = new DOTweenTMPAnimator(energyText);
         SliderChanged();
@@ -193,14 +193,14 @@ public class GameLogic : MonoBehaviour
         calculateMeaning.Add(MeaningFlatReduction);
 
         DialogueEvent newEvent;
-        newEvent = new DialogueEvent(0, 100, 1);
-        newEvent.SetExercise(0.35f);
+        newEvent = new DialogueEvent(1, 100, 1);
+        newEvent.SetExercise(0.36f);
         newEvent.SetMessage("You learned to walk.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(0, 100, 1);
-        newEvent.SetMessage("You learned to talk.");
-        newEvent.SetSocial(0.4f);
+        newEvent = new DialogueEvent(1, 100, 1);
+        newEvent.SetMessage("You learned to talk. Your first word is very impressive.");
+        newEvent.SetSocial(0.72f);
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(UnityEngine.Random.Range(6,13), 14, 0.25f);
