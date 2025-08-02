@@ -2047,7 +2047,7 @@ GameObject:
   - component: {fileID: 1064529100}
   m_Layer: 0
   m_Name: Logic
-  m_TagString: Untagged
+  m_TagString: Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2108,6 +2108,7 @@ MonoBehaviour:
   gameTime: 0
   gameTickSpeed: 0.1
   yearLength: 3.75
+  year: 0
   energy: 0
   maxEnergy: 40
   happiness: 50
@@ -2291,6 +2292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d93e5645807642b44f884485be68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kidUpperBound: 2
+  AdultUpperBound: 4
 --- !u!114 &1171963313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}

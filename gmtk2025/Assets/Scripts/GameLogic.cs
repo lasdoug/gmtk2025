@@ -27,7 +27,7 @@ public class GameLogic : MonoBehaviour
     float tickCounter = 0f;
     public float yearLength = 3.75f;
     float yearCounter = 0f;
-    int year = 0;
+    public int year = 0;
     public int energy = 0;
     public int maxEnergy = 40;
     public float happiness = 50f;
