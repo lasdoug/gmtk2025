@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using DG.Tweening;
 using TMPro;
 using Unity.Multiplayer.Center.Common;
 using UnityEngine;
@@ -33,21 +34,23 @@ public class GameLogic : MonoBehaviour
     public float health = 90f;
     public float money = 0f;
     public float meaning = 0f;
+    bool energyTweening = false;
 
     public float scaling = 0.1f;
     public float[] dropoffMultipliers = { 1, 1, 1, 1 };
     // HAPPINESS , HEALTH , MONEY , MEANING
-    public float[] workMultipliers = { 1, -0.25f, 1, 1 };
-    public float[] playMultipliers = { 1, 1, -1, 1 };
-    public float[] socialMultipliers = { 1, -1, -1, 1 };
-    public float[] exerciseMultipliers = { 0.5f, 1, -1, 1 };
+    float[] workMultipliers = { 0.5f, -0.3f, 0.4f, 0.1f };
+    float[] playMultipliers = { 0.4f, 1, -1, 0.1f };
+    float[] socialMultipliers = { 0.4f, -1, -1, 0.1f };
+    float[] exerciseMultipliers = { 0.1f, 0.5f, -1, 0.1f };
     // Vector3(mean, variance, mode)
     // mode: 0 no penalty, 1 penalty
-    public Vector3[] workWindows = { new Vector3(7, 4, 1), new Vector3(20, 15, 0), new Vector3(20, 19, 1), new Vector3(12, 3, 0) };
-    public Vector3[] playWindows = { new Vector3(20, 20, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(17, 3, 0) };
-    public Vector3[] socialWindows = { new Vector3(20, 15, 1), new Vector3(20, 2, 0), new Vector3(20, 6, 0), new Vector3(20, 5, 0) };
-    public Vector3[] exerciseWindows = { new Vector3(12, 4, 1), new Vector3(20, 18, 1), new Vector3(20, 5, 0), new Vector3(0, 0, 0) };
-    public float[] flatReductions = { -0.1f, -0.1f, -0.1f, -0.1f };
+    Vector3[] workWindows = { new Vector3(6, 2, 1), new Vector3(20, 15, 0), new Vector3(20, 19, 1), new Vector3(12, 3, 0) };
+    Vector3[] playWindows = { new Vector3(20, 20, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(17, 3, 0) };
+    Vector3[] socialWindows = { new Vector3(20, 15, 1), new Vector3(20, 2, 0), new Vector3(20, 6, 0), new Vector3(20, 5, 0) };
+    Vector3[] exerciseWindows = { new Vector3(11, 6, 1), new Vector3(20, 18, 1), new Vector3(20, 5, 0), new Vector3(0, 0, 0) };
+    float[] flatReductions = { -0.1f, -0.1f, -0.8f, -0.1f };
+    float[] energyPenaltyMultipliers = { 1, 1, 1, 1 };
     List<Func<float>> calculateHappiness = new();
     List<Func<float>> calculateHealth = new();
     List<Func<float>> calculateMoney = new();
@@ -86,6 +89,8 @@ public class GameLogic : MonoBehaviour
         calculateMeaning.Add(SocialMeaningGain);
         calculateMeaning.Add(ExerciseMeaningGain);
         calculateMeaning.Add(MeaningFlatReduction);
+
+
     }
 
     // Update is called once per frame
@@ -116,7 +121,7 @@ public class GameLogic : MonoBehaviour
             yearCounter -= yearLength;
             year++;
             ageText.text = "AGE: " + year;
-            Debug.Log(cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
+            //Debug.Log(cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
         }
 
     }
@@ -131,6 +136,16 @@ public class GameLogic : MonoBehaviour
     {
         energy = maxEnergy - (int)(work.value + play.value + social.value + exercise.value);
         energyText.text = "ENERGY: " + energy + "/" + maxEnergy;
+        if (energy < 0 && !energyTweening)
+        {
+            TweenText(energyText, 6);
+            energyTweening = true;
+        }
+        else if (energy >= 0 && energyTweening)
+        {
+            energyText.DOKill();
+            energyTweening = false;
+        }
     }
 
     // GameTick is called based on gameTickSpeed
@@ -173,11 +188,11 @@ public class GameLogic : MonoBehaviour
         {
             mngGain += func.Invoke();
         }
-        happiness += hapGain;
-        health += hltGain;
-        money += monGain;
-        meaning += mngGain;
-        Debug.Log(hapGain);
+        happiness += hapGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[0];
+        health += hltGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[1];
+        money += monGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[2];
+        meaning += mngGain - Mathf.Min((float)energy, 0f)*scaling*energyPenaltyMultipliers[3];
+        //Debug.Log(hapGain);
     }
 
     void UpdateStatText()
@@ -188,12 +203,25 @@ public class GameLogic : MonoBehaviour
         meaningText.text = "" + (int)meaning;
     }
 
+    void TweenText(TMP_Text text, int chars)
+    {
+        DOTweenTMPAnimator animator = new DOTweenTMPAnimator(text);
+        Sequence sequence = DOTween.Sequence();
+        for (int i = 0; i < chars; ++i)
+        {
+            if (!animator.textInfo.characterInfo[i].isVisible) continue;
+            sequence.Join(animator.DOShakeCharOffset(i, 0.1f, 2f, 7, 45f));
+        }
+        sequence.SetLoops(-1, LoopType.Restart);
+    }
+
     float WorkHappinessGain()
     {
         float gain = 0;
         gain += workWindows[0].y - Mathf.Abs(work.value - workWindows[0].x);
         if (gain < 0 && workWindows[0].z == 0) gain = 0;
         gain *= scaling * workMultipliers[0];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -203,6 +231,7 @@ public class GameLogic : MonoBehaviour
         gain += playWindows[0].y - Mathf.Abs(play.value - playWindows[0].x);
         if (gain < 0 && playWindows[0].z == 0) gain = 0;
         gain *= scaling * playMultipliers[0];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -212,6 +241,7 @@ public class GameLogic : MonoBehaviour
         gain += socialWindows[0].y - Mathf.Abs(social.value - socialWindows[0].x);
         if (gain < 0 && socialWindows[0].z == 0) gain = 0;
         gain *= scaling * socialMultipliers[0];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -221,6 +251,7 @@ public class GameLogic : MonoBehaviour
         gain += exerciseWindows[0].y - Mathf.Abs(exercise.value - exerciseWindows[0].x);
         if (gain < 0 && exerciseWindows[0].z == 0) gain = 0;
         gain *= scaling * exerciseMultipliers[0];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -230,6 +261,7 @@ public class GameLogic : MonoBehaviour
         gain += workWindows[1].y - Mathf.Abs(work.value - workWindows[1].x);
         if (gain < 0 && workWindows[1].z == 0) gain = 0;
         gain *= scaling * workMultipliers[1];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -239,6 +271,7 @@ public class GameLogic : MonoBehaviour
         gain += playWindows[1].y - Mathf.Abs(play.value - playWindows[1].x);
         if (gain < 0 && playWindows[1].z == 0) gain = 0;
         gain *= scaling * playMultipliers[1];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -248,6 +281,7 @@ public class GameLogic : MonoBehaviour
         gain += socialWindows[1].y - Mathf.Abs(social.value - socialWindows[1].x);
         if (gain < 0 && socialWindows[1].z == 0) gain = 0;
         gain *= scaling * socialMultipliers[1];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -257,6 +291,7 @@ public class GameLogic : MonoBehaviour
         gain += exerciseWindows[1].y - Mathf.Abs(exercise.value - exerciseWindows[1].x);
         if (gain < 0 && exerciseWindows[1].z == 0) gain = 0;
         gain *= scaling * exerciseMultipliers[1];
+        //Debug.Log(gain);
         return gain;
     }
 
@@ -266,6 +301,7 @@ public class GameLogic : MonoBehaviour
         gain += workWindows[2].y - Mathf.Abs(work.value - workWindows[2].x);
         if (gain < 0 && workWindows[2].z == 0) gain = 0;
         gain *= scaling * workMultipliers[2];
+        Debug.Log(gain);
         return gain;
     }
 
@@ -275,6 +311,7 @@ public class GameLogic : MonoBehaviour
         gain += playWindows[2].y - Mathf.Abs(play.value - playWindows[2].x);
         if (gain < 0 && playWindows[2].z == 0) gain = 0;
         gain *= scaling * playMultipliers[2];
+        Debug.Log(gain);
         return gain;
     }
 
@@ -284,6 +321,7 @@ public class GameLogic : MonoBehaviour
         gain += socialWindows[2].y - Mathf.Abs(social.value - socialWindows[2].x);
         if (gain < 0 && socialWindows[2].z == 0) gain = 0;
         gain *= scaling * socialMultipliers[2];
+        Debug.Log(gain);
         return gain;
     }
 
@@ -293,6 +331,7 @@ public class GameLogic : MonoBehaviour
         gain += exerciseWindows[2].y - Mathf.Abs(exercise.value - exerciseWindows[2].x);
         if (gain < 0 && exerciseWindows[2].z == 0) gain = 0;
         gain *= scaling * exerciseMultipliers[2];
+        Debug.Log(gain);
         return gain;
     }
 
