@@ -164,7 +164,7 @@ MonoBehaviour:
   gameTickSpeed: 0.1
   yearLength: 3.75
   energy: 0
-  maxEnergy: 40
+  maxEnergy: 20
   happiness: 50
   health: 50
   money: 50
@@ -175,51 +175,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  workMultipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  playMultipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  socialMultipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  exerciseMultipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  workWindows:
-  - {x: 3, y: 10, z: 1}
-  - {x: 0, y: 20, z: 6.53e-43}
-  - {x: 0, y: 20, z: 6.99774e+22}
-  - {x: 8, y: 15, z: 6.57e-43}
-  playWindows:
-  - {x: 0, y: 20, z: 1}
-  - {x: 20, y: 20, z: 6.53e-43}
-  - {x: 19, y: 20, z: 6.99774e+22}
-  - {x: 15, y: 20, z: 6.57e-43}
-  socialWindows:
-  - {x: 20, y: 15, z: 1}
-  - {x: 20, y: 2, z: 6.53e-43}
-  - {x: 20, y: 6, z: 6.99774e+22}
-  - {x: 20, y: 5, z: 6.57e-43}
-  exerciseWindows:
-  - {x: 12, y: 4, z: 1}
-  - {x: 20, y: 20, z: 6.53e-43}
-  - {x: 20, y: 5, z: 6.99774e+22}
-  - {x: 0, y: 0, z: 6.57e-43}
-  flatReductions:
-  - -0.1
-  - -0.1
-  - -0.1
-  - -0.1
   cumWork: 0
   cumHobbies: 0
   cumSocial: 0
