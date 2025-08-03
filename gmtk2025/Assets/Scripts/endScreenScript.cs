@@ -40,14 +40,12 @@ public class endScreenScript : MonoBehaviour
         cumMoney = (GameLogic.cumMoney)/(float)age;
         cumMeaning = (GameLogic.cumMeaning)/(float)age;
 
-
-
         //for testing
-        age = Random.Range(0, 130);
-        cumHappiness = Random.Range(-2.0f, 5.0f);
-        cumHealth = Random.Range(0f, 5.0f);
-        cumMoney = Random.Range(0f, 5f);
-        cumMeaning = Random.Range(0f, 1.2f);
+        //age = Random.Range(0, 130);
+        //cumHappiness = Random.Range(-2.0f, 5.0f);
+        //cumHealth = Random.Range(0f, 5.0f);
+        //cumMoney = Random.Range(0f, 5f);
+        //cumMeaning = Random.Range(0f, 1.2f);
         
         print("year: " + GameLogic.year);
         print("Age: " + age);
