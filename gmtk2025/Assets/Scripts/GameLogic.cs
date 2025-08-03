@@ -510,19 +510,19 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You help your last child pack. Their room feels too quiet.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(55, 59, 0.15f);
+        newEvent = new DialogueEvent(41, 59, 0.05f);
         newEvent.SetMessage("You split up. It’s not dramatic. Just inevitable");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(51, 59, 0.3f);
+        newEvent = new DialogueEvent(42, 59, 0.3f);
         newEvent.SetMessage("You take a spontaneous trip. No one asks where you’re going.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(48, 59, 0.1f);
+        newEvent = new DialogueEvent(41, 59, 0.1f);
         newEvent.SetMessage("You finally say no without explaining why or feeling guilt");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(54, 61, 0.2f);
+        newEvent = new DialogueEvent(42, 61, 0.2f);
         newEvent.SetMessage("You start doing the thing you used to say you never had time for.");
         dialogueEvents.Add(newEvent);
 
@@ -530,9 +530,9 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You wake up and feel excited. It surprises you.");
         dialogueEvents.Add(newEvent);
 
-        // newEvent = new DialogueEvent();
-        // newEvent.SetMessage("");
-        // dialogueEvents.Add(newEvent);
+        newEvent = new DialogueEvent();
+        newEvent.SetMessage("");
+        dialogueEvents.Add(newEvent);
 
         Debug.Log(dialogueEvents.Count);
     }
