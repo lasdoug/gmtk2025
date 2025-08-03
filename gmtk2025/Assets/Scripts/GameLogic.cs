@@ -69,6 +69,8 @@ public class GameLogic : MonoBehaviour
     string[] firstWords = { "THROAT", "RICE", "CAR", "NOODLES", "MOMMA", "DADDA", "CELERY", "FRESCO", "CONGLOMERATE",  "NO" };
     string [] hobbies = {"DINOSAURS", "TRUCKS", "THE STOCK MARKET", "MAGIC", "MAGIC THE GATHERING", "BUGS", "BASS GUITAR"};
 
+    string [] personalProjects = {"A FILM ABOUT DUST", "AN INDIE GAME ABOUT FOXES", "AN EP OF HOUSE MUSIC", "A PAINTING OF YOUR HOUSE"};
+
     class DialogueEvent
     {
         GameLogic gameLogic;
@@ -264,17 +266,17 @@ public class GameLogic : MonoBehaviour
         DialogueEvent newEvent;
         newEvent = new DialogueEvent(1, 100, 1);
         newEvent.SetExercise(0.36f);
-        newEvent.SetMessage("You learn to walk.");
+        newEvent.SetMessage("You learn to crawl.");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(1, 100, 1);
-        newEvent.SetMessage("You learn to talk. Your first word is " + firstWords[UnityEngine.Random.Range(0,firstWords.Length)] + ".");
+        newEvent.SetMessage("You learn to talk. Your first word is " + firstWords[UnityEngine.Random.Range(0, firstWords.Length)] + ".");
         newEvent.SetSocial(0.72f);
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(6, 11, 1);
         newEvent.SetMessage("You are an extremely healthy child.");
-        newEvent.SetHealth(2.88f);
+        newEvent.SetHealth(4f);
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(2, 10, 1);
@@ -284,7 +286,7 @@ public class GameLogic : MonoBehaviour
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(2, 11, 1);
-        newEvent.SetMessage("You have a newfound appreciation for " + hobbies[UnityEngine.Random.Range(0,hobbies.Length)] + ".");
+        newEvent.SetMessage("You have a newfound appreciation for " + hobbies[UnityEngine.Random.Range(0, hobbies.Length)] + ".");
         newEvent.SetPlay(1.5f);
         newEvent.SetMeaningChange(10);
         dialogueEvents.Add(newEvent);
@@ -293,7 +295,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You have an 7th birthday party. It's alright.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(6,13), 14, 0.25f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(6, 13), 14, 0.25f);
         newEvent.SetMessage("You find £5 on the floor. You take it.");
         newEvent.SetMoneyChange(5f);
         newEvent.SetMeaningChange(-2);
@@ -316,12 +318,221 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(12,13), 14, 0.6f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(12, 13), 14, 0.6f);
         newEvent.SetMessage("You start at a new school. You hate waking up so early.");
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
+        //adult
+        newEvent = new DialogueEvent(21, 25, 0.8f);
+        newEvent.SetMessage("You move back home. You start applying for 'real' jobs.");
+        newEvent.SetMeaningChange(-3);
+        newEvent.SetHappinessChange(-5);
+        dialogueEvents.Add(newEvent);
 
+        newEvent = new DialogueEvent(21, 30, 0.25f);
+        newEvent.SetMessage("You catch up with old classmates. Everyone got a job in banking.");
+        newEvent.SetMeaningChange(4);
+        newEvent.SetHappinessChange(-5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(21, 28, 0.6f);
+        newEvent.SetMessage("You take a job you're not excited about. You need the money.");
+        newEvent.SetMeaningChange(-7);
+        newEvent.SetHappinessChange(-5);
+        newEvent.SetMoneyChange(15f);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(23, 40, 1f);
+        newEvent.SetMessage("You start a new personal project. It's " + hobbies[UnityEngine.Random.Range(0, hobbies.Length)] + ".");
+        newEvent.SetPlay(3.78f);
+        newEvent.SetMeaningChange(10f);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(24, 28, 1f);
+        newEvent.SetMessage("You move into a flat. It smells like wet rags.");
+        newEvent.SetMoney(40);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(23, 30, 0.25f);
+        newEvent.SetMessage("You get your first payslip. It's less than you expected.");
+        newEvent.SetMoneyChange(15);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(25, 29, 0.6f);
+        newEvent.SetMessage("You’re asked: “Where do you see yourself in five years?” You lie.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(28, 36, 0.6f);
+        newEvent.SetMessage("You stay at your boring job longer than planned. The days blur into a loop.");
+        newEvent.SetMeaningChange(-7);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(25, 32, 0.5f);
+        newEvent.SetMessage("You wonder if you should go back to school.");
+        newEvent.SetMeaning(25);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(27, 35, 0.2f);
+        newEvent.SetMessage("Your old friends from school start getting married. It feels weird.");
+        newEvent.SetMoneyChange(-3f);
+        dialogueEvents.Add(newEvent);
+        Debug.Log(dialogueEvents.Count);
+
+        newEvent = new DialogueEvent(27, 37, 0.2f);
+        newEvent.SetMessage("You meet someone invigorating at a birthday party. You talk for hours.");
+        newEvent.SetSocial(4.5f);
+        newEvent.SetHappinessChange(10f);
+        newEvent.SetMeaningChange(4f);
+        dialogueEvents.Add(newEvent);
+        
+        newEvent = new DialogueEvent(29, 35, 0.5f);
+        newEvent.SetMessage("You get a pet. You talk to them more than people.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(26, 32, 0.25f);
+        newEvent.SetMessage("You buy your first real piece of furniture. It feels adult.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(22, 28, 0.25f);
+        newEvent.SetMessage("You say I love you to that someone and wait to hear it back.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(25, 32, 0.6f);
+        newEvent.SetMessage("You miss a doctor’s appointment and don’t reschedule it.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(22, 22, 1f);
+        newEvent.SetMessage("You lose someone suddenly. You weren’t ready");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(29, 34, 0.25f);
+        newEvent.SetMessage("You’re offered a better job in a city you don’t love.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(30, 35, 0.25f);
+        newEvent.SetMessage("You move again. You’re better at packing this time.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(30, 36, 0.2f);
+        newEvent.SetMessage("Your partner says you sound like your parents.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(26, 38, 0.7f);
+        newEvent.SetMessage("You forget your friend's birthday");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(31, 39, 0.6f);
+        newEvent.SetMessage("You realize you’re not young anymore, but you’re not old either.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(30, 35, 0.3f);
+        newEvent.SetMessage("You finally fix that thing in the house that’s been broken for years.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(30, 42, 0.3f);
+        newEvent.SetMessage("You go on holiday. You spend most of it trying to relax.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(31, 43, 0.3f);
+        newEvent.SetMessage("You host a dinner party. The plates don’t match, but no one cares.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(36, 44, 0.7f);
+        newEvent.SetMessage("You watch your parents age. The weight of time passing starts to feel real.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(39, 48, 0.25f);
+        newEvent.SetMessage("You start getting invited to more kids’ birthdays than weddings.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(40, 48, 0.2f);
+        newEvent.SetMessage("You miss a work deadline. Nothing explodes.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(42, 47, 0.5f);
+        newEvent.SetMessage("You buy a really good vacuum. You tell people about it");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(43, 49, 0.1f);
+        newEvent.SetMessage("You think about your ex during a layover.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(40, 50, 0.3f);
+        newEvent.SetMessage("You realize your childhood friends have become strangers.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(45, 51, 0.25f);
+        newEvent.SetMessage("You go out for one drink. You have a hangover the next day.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(27, 55, 0.1f);
+        newEvent.SetMessage("You cancel plans because you're tired. You feel a little guilty.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(35, 60, 0.1f);
+        newEvent.SetMessage("You find your first grey hair. You leave it.");
+        dialogueEvents.Add(newEvent);
+        
+        newEvent = new DialogueEvent(38, 47, 0.1f );
+        newEvent.SetMessage("You drive your kid to school in silence. They don’t say goodbye.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(37, 52, 0.05f);
+        newEvent.SetMessage("You wonder if you’re a good parent.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(40, 58, 0.1f);
+        newEvent.SetMessage("You wake up before everyone else. You enjoy the quiet.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(38, 59, 0.1f);
+        newEvent.SetMessage("You help with homework you don’t understand.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(35, 59, 0.3f);
+        newEvent.SetMessage("You throw a birthday party. It’s more for them than you.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(50, 59, 0.2f);
+        newEvent.SetMessage("You stay up late folding laundry.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(45, 59, 0.1f);
+        newEvent.SetMessage("You realize your kids don’t need you as much anymore");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(47, 59, 0.1f);
+        newEvent.SetMessage("You and your partner sit across from each other in silence");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(52, 52, 1f);
+        newEvent.SetMessage("You help your last child pack. Their room feels too quiet.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(55, 59, 0.15f);
+        newEvent.SetMessage("You split up. It’s not dramatic. Just inevitable");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(51, 59, 0.3f);
+        newEvent.SetMessage("You take a spontaneous trip. No one asks where you’re going.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(48, 59, 0.1f);
+        newEvent.SetMessage("You finally say no without explaining why or feeling guilt");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(54, 61, 0.2f);
+        newEvent.SetMessage("You start doing the thing you used to say you never had time for.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(58, 63, 0.2f);
+        newEvent.SetMessage("You wake up and feel excited. It surprises you.");
+        dialogueEvents.Add(newEvent);
+
+        // newEvent = new DialogueEvent();
+        // newEvent.SetMessage("");
+        // dialogueEvents.Add(newEvent);
 
         Debug.Log(dialogueEvents.Count);
     }
