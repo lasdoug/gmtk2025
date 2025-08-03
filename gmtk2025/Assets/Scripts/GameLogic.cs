@@ -326,7 +326,7 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(UnityEngine.Random.Range(12,13), 14, 0.7f);
         newEvent.SetMessage("You and your new mates discover " + bands[UnityEngine.Random.Range(0,bands.Length)]+".");
-        newEvent.SetSocial(2.3f);
+        newEvent.SetSocial(1.9f);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
@@ -449,6 +449,96 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
+        //uni
+        newEvent = new DialogueEvent(17.1f, 19, 1f);
+        newEvent.SetMessage("School is almost over. You don't know what you want to do next.");
+        newEvent.SetPlay(-3f);
+        newEvent.SetMeaningChange(-5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(17.1f, 19, 1f);
+        newEvent.SetMessage("School is almost over. You want to pursue your interests.");
+        newEvent.SetPlay(3.1f);
+        newEvent.SetMeaningChange(5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(17.5f, 19, 0.7f);
+        newEvent.SetMessage("Prom is coming up. You invite your crush.");
+        newEvent.SetSocial(3.5f);
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(17.5f, 19, 0.7f);
+        newEvent.SetMessage("Prom is coming up. You buy an outfit.");
+        newEvent.SetSocial(-3f);
+        newEvent.SetMoneyChange(-5);
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f,22), 23, 0.4f);
+        newEvent.SetMessage("You get your heart broken. You pretend it's fine.");
+        newEvent.SetSocial(2f);
+        newEvent.SetHappinessChange(-15);
+        newEvent.SetMeaningChange(2);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(18, 20, 0.4f);
+        newEvent.SetMessage("You move into student housing. The walls are thin.");
+        newEvent.SetWork(1f);
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.3f);
+        newEvent.SetMessage("Do you like your degree?");
+        newEvent.SetWork(1f);
+        newEvent.SetHappiness(-50);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 1);
+        newEvent.SetMessage("You get your first job out of school. It's ok.");
+        newEvent.SetWork(-0.5f);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent.SetMessage("You skip breakfast and live off coffee for three days.");
+        newEvent.SetHealthChange(-10);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent.SetMessage("You hook up with someone at a party. You don't talk after.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent.SetMessage("You sit in a lecture that changes how you see the world.");
+        newEvent.SetWork(1f);
+        newEvent.SetMeaningChange(3);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent.SetMessage("You take a walk at night.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f,21), 22, 0.5f);
+        newEvent.SetMessage("It's your final year of study. You feel anxious sometimes.");
+        newEvent.SetWork(1.1f);
+        newEvent.SetHappinessChange(-5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f,21), 22, 0.5f);
+        newEvent.SetMessage("You submit your final assignment. Sleeping feels nice.");
+        newEvent.SetWork(1.1f);
+        newEvent.SetHealthChange(-5);
+        newEvent.SetHappinessChange(5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(21, 22, 0.5f);
+        newEvent.SetMessage("There are a lot of people at your graduation.");
+        newEvent.SetWork(1.4f);
+        newEvent.SetHappinessChange(5);
+        dialogueEvents.Add(newEvent);
+
         //adult
         newEvent = new DialogueEvent(20, 25, 0.2f);
         newEvent.SetMessage("You move back home. You start applying for 'real' jobs.");
@@ -539,10 +629,8 @@ public class GameLogic : MonoBehaviour
         newEvent.SetPlay(7);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(25, 75, 0.05f);
-        newEvent.SetMessage("You miss a doctor’s appointment and don’t reschedule it.");
-        newEvent.SetHealth(15f);
-        newEvent.SetHealthChange(-3);
+        newEvent = new DialogueEvent(25, 32, 0.6f);
+        newEvent.SetMessage("You miss a doctor’s appointment and don't reschedule it.");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(22, 22, 1f);

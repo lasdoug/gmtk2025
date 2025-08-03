@@ -36,10 +36,12 @@ public class NotifScript : MonoBehaviour
 
     public void QueueMessage(string str)
     {
+        if (str == "") return;
+        
         if (firstMessage.GetPreferredValues(str).x <= maxWidth)
         {
             messages.Enqueue(str);
-            return; 
+            return;
         }
         string[] tokens = str.Split(' ');
         string segment = "";
