@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
@@ -796,6 +797,12 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            DOTween.KillAll();
+            SceneManager.LoadScene(3);
+        }
+        
         if (isPaused || forcedPause)
         {
             if (!pauseOverlay.activeSelf) pauseOverlay.SetActive(true);
