@@ -1,4 +1,6 @@
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.WSA;
 using TMPro;
 
 public class endScreenScript : MonoBehaviour
@@ -45,12 +47,9 @@ public class endScreenScript : MonoBehaviour
         cumHealth = Random.Range(0, 400);
         cumMoney = Random.Range(0, 400);
         cumMeaning = Random.Range(0, 400);
-
+    
         //Make Text String
-        if (myText != null)
-        {
-            myText.text = MakeText();
-        }
+        myText.text = MakeText();
     }
 
     // Update is called once per frame
@@ -98,7 +97,7 @@ public class endScreenScript : MonoBehaviour
         }
         else if (age < ageCompare[1])
         {
-            cAge = "until middle age";
+            cAge = "until early age";
         }
         else if (age < ageCompare[2])
         {
@@ -116,7 +115,7 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumHappiness < cumHappinessCompare[1])
         {
-            cHappy = "emotionally balanced";
+            cHappy = "kinda sad";
         }
         else if (cumHappiness < cumHappinessCompare[2])
         {
@@ -134,7 +133,7 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumHealth < cumHealthCompare[1])
         {
-            cHealth = "a little unfit";
+            cHealth = "a lil unfit";
         }
         else if (cumHealth < cumHealthCompare[2])
         {
@@ -178,10 +177,10 @@ public class endScreenScript : MonoBehaviour
         }
         else
         {
-            cMeaning = "were a zen-like monk";
+            cMeaning = "were zen like monk";
         }
 
-        return "Score: " + cScore + "\n" + "\nYou lived " + cAge + andButAgeHappy + "you were " + cHappy
+        return "Score: " + cScore + " Age: " + age + "\nYou lived " + cAge + andButAgeHappy + "you were " + cHappy
         + ". \nYou were " + cHealth + andButHealthMoney + cMoney + ". \nYou " + cMeaning + ".";
     }
 
