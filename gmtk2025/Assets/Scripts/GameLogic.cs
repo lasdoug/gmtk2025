@@ -74,7 +74,7 @@ public class GameLogic : MonoBehaviour
         public float lower, upper;
         public float chance, work = 0, play = 0, social = 0, exercise = 0, happiness = 0, health = 0, money = 0, meaning = 0, happinesschange = 0, healthchange = 0, moneychange = 0, meaningchange = 0;
         public string message;
-        public DialogueEvent(int lowerAge, int upperAge, float chanceOfOccurance)
+        public DialogueEvent(float lowerAge, float upperAge, float chanceOfOccurance)
         {
             lower = lowerAge + UnityEngine.Random.Range(0f, 0.5f);
             upper = upperAge + UnityEngine.Random.Range(-0.5f, 0.5f);
@@ -102,7 +102,61 @@ public class GameLogic : MonoBehaviour
 
         bool AboveValues()
         {
-            return GameLogic.cumWork >= work && GameLogic.cumHobbies >= play && GameLogic.cumSocial >= social && GameLogic.cumExercise >= exercise && gameLogic.happiness >= happiness && gameLogic.health >= health && gameLogic.money >= money && gameLogic.meaning >= meaning;
+            bool ans = true;
+            if (work < 0)
+            {
+                ans = ans && GameLogic.cumWork <= -work;
+            }
+            else if (work > 0)
+            {
+                ans = ans && GameLogic.cumWork >= work;
+            }
+            if (play < 0) {
+                ans = ans && GameLogic.cumHobbies <= -play;
+            }
+            else if (play > 0) {
+                ans = ans && GameLogic.cumHobbies >= play;
+            }
+            if (social < 0) {
+                ans = ans && GameLogic.cumSocial <= -social;
+            }
+            else if (social > 0) {
+                ans = ans && GameLogic.cumSocial >= social;
+            }
+            if (exercise < 0) {
+                ans = ans && GameLogic.cumExercise <= -exercise;
+            }
+            else if (exercise > 0){
+                ans = ans && GameLogic.cumExercise >= exercise;
+            }
+
+            if (happiness < 0)
+            {
+                ans = ans && gameLogic.happiness <= -happiness;
+            }
+            else if (happiness > 0)
+            {
+                ans = ans && gameLogic.happiness >= happiness;
+            }
+            if (health < 0) {
+                ans = ans && gameLogic.health <= -health;
+            }
+            else if (health > 0){
+                ans = ans && gameLogic.health >= health;
+            }
+            if (money < 0) {
+                ans = ans && gameLogic.money <= -money;
+            }
+            else if (money > 0){
+                ans = ans && gameLogic.money >= money;
+            }
+            if (meaning < 0) {
+                ans = ans && gameLogic.meaning <= -meaning;
+            }
+            else if (meaning > 0){
+                ans = ans && gameLogic.meaning >= meaning;
+            }
+            return ans;
         }
 
         public void SetMessage(string str)
@@ -209,6 +263,25 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You found £20 on the floor.");
         newEvent.SetMoneyChange(3f);
         dialogueEvents.Add(newEvent);
+
+        //adolescent
+        newEvent = new DialogueEvent(11, 12, 1);
+        newEvent.SetMessage("You start at a new school. You hate waking up so early.");
+        newEvent.SetHappinessChange(-5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(11.5f, 12, 0.6f);
+        newEvent.SetMessage("You got a A on your first test. It feels good.");
+        newEvent.SetWork(2f);
+        newEvent.SetHappinessChange(5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(12,13), 14, 0.6f);
+        newEvent.SetMessage("You start at a new school. You hate waking up so early.");
+        newEvent.SetHappinessChange(-5);
+        dialogueEvents.Add(newEvent);
+
+
 
         Debug.Log(dialogueEvents.Count);
     }
