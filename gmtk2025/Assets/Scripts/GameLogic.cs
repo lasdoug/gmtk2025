@@ -66,7 +66,7 @@ public class GameLogic : MonoBehaviour
 
     public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
 
-    string[] achievements = { "helloworld", "helloworldagain", "superchargedbaby", "centenarian", "truemeaning", "immovableobject", "silent", "earlyactor", "playful", "desertislanddisc" };
+    string[] achievements = { "helloworld", "helloworldagain", "superchargedbaby", "centenarian", "truemeaning", "immovableobject", "silent", "earlyactor", "playful", "desertislanddisc", "sanity", "rich" };
     public List<HoverOverSlot> slots;
     bool hobbyFlag = false;
     bool bandFlag = false;
@@ -276,6 +276,11 @@ public class GameLogic : MonoBehaviour
         newEvent = new DialogueEvent(1, 100, 1);
         newEvent.SetExercise(0.36f);
         newEvent.SetMessage("You learn to crawl.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(8, 100, 1);
+        newEvent.SetHappiness(-1f);
+        newEvent.SetMessage("You feel perpetually unhappy. You start chewing the skirting boards");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(1, 100, 1);
@@ -1376,6 +1381,17 @@ public class GameLogic : MonoBehaviour
         {
             slots[9].SetAchieved();
             PlayerPrefs.SetInt(achievements[9], 1);
+        }
+
+        if (!slots[10].GetAchieved() && happiness < 1 && year > 8)
+        {
+            slots[10].SetAchieved();
+            PlayerPrefs.SetInt(achievements[10], 1);
+        }
+        if (!slots[11].GetAchieved() && money > 250 )
+        {
+            slots[11].SetAchieved();
+            PlayerPrefs.SetInt(achievements[11], 1);
         }
     }
     
