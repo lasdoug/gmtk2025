@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Logic
   - guyBkg
+  - Audio
   layers:
   - Default
   - TransparentFX

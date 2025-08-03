@@ -910,6 +910,7 @@ public class GameLogic : MonoBehaviour
                 PlayerPrefs.SetInt(achievements[2], 1);
             }
             PlayerPrefs.Save();
+            GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>().Play("death");
             DOTween.KillAll();
             SceneManager.LoadScene(3);
         }
