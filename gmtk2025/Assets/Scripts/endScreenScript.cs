@@ -13,11 +13,11 @@ public class endScreenScript : MonoBehaviour
     private float cumMoney;
     private float cumMeaning;
     public int age;
-    private int[] ageCompare = { 20, 60, 100 };
-    private float[] cumHappinessCompare = { 0.6f, 1.2f, 2.0f };
+    private int[] ageCompare = { 20, 40, 60, 100 };
+    private float[] cumHappinessCompare = { -1f, 0f, 0.6f, 1.2f, 2.0f, 3.0f, 4.0f };
     private float[] cumHealthCompare = { 0.6f, 1.2f, 2.0f };
-    private float[] cumMoneyCompare = { 0.6f, 1.2f, 2.0f };
-    private float[] cumMeaningCompare = { 0.15f, 0.4f, 1.0f };
+    private float[] cumMoneyCompare = { 0.6f, 1.2f, 2.0f, 3.0f, 4.0f };
+    private float[] cumMeaningCompare = { 0.15f, 0.4f, 0.7f, 1.0f };
 
     private enum personal
     {
@@ -101,6 +101,10 @@ public class endScreenScript : MonoBehaviour
         }
         else if (age < ageCompare[2])
         {
+            cAge = "until middle age";
+        }
+        else if (age < ageCompare[3])
+        {
             cAge = "a long life";
         }
         else
@@ -111,19 +115,35 @@ public class endScreenScript : MonoBehaviour
         //HAPPINESS
         if (cumHappiness < cumHappinessCompare[0])
         {
-            cHappy = "sad";  
+            cHappy = "the saddest person to ever live";  
         }
         else if (cumHappiness < cumHappinessCompare[1])
         {
-            cHappy = "kinda sad";
+            cHappy = "extremely sad";
         }
         else if (cumHappiness < cumHappinessCompare[2])
         {
+            cHappy = "sad";
+        }
+        else if (cumHappiness < cumHappinessCompare[3])
+        {
+            cHappy = "kinda sad";
+        }
+        else if (cumHappiness < cumHappinessCompare[4])
+        {
             cHappy = "happy";
+        }
+        else if (cumHappiness < cumHappinessCompare[5])
+        {
+            cHappy = "very happy";
+        }
+        else if (cumHappiness < cumHappinessCompare[6])
+        {
+            cHappy = "extremely happy";
         }
         else
         {
-            cHappy = "very happy";
+            cHappy = "the happiest person to ever live";
         }
 
         //HEALTH
@@ -157,9 +177,17 @@ public class endScreenScript : MonoBehaviour
         {
             cMoney = "doing well financially";
         }
+        else if (cumMoney < cumMoneyCompare[3])
+        {
+            cMoney = "had lots of nice cars";
+        }
+        else if (cumMoney < cumMoneyCompare[4])
+        {
+            cMoney = "had 2 mansions and a private jet";
+        }
         else
         {
-            cMoney = "exorbitantly rich";
+            cMoney = "were exorbitantly rich";
         }
 
         //Meaning
@@ -174,6 +202,10 @@ public class endScreenScript : MonoBehaviour
         else if (cumMeaning < cumMeaningCompare[2])
         {
             cMeaning = "had a strong life direction";
+        }
+        else if (cumMeaning < cumMeaningCompare[3])
+        {
+            cMeaning = "had many life experiences";
         }
         else
         {
