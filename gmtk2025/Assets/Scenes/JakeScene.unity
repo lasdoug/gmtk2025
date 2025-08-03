@@ -171,7 +171,7 @@ MonoBehaviour:
   energy: 0
   maxEnergy: 20
   happiness: 10
-  health: 50
+  health: 100
   money: 0
   meaning: 0
   scaling: 0.1
@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_Value
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1572,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_Value
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
