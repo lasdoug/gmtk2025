@@ -1,6 +1,4 @@
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.WSA;
 using TMPro;
 
 public class endScreenScript : MonoBehaviour
