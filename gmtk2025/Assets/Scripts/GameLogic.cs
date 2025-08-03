@@ -306,7 +306,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMeaningChange(10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(7, 7, 1);
+        newEvent = new DialogueEvent(6.8f, 8, 0.4f);
         newEvent.SetMessage("You have an 7th birthday party. It's alright.");
         dialogueEvents.Add(newEvent);
 
@@ -316,7 +316,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMeaningChange(-2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(8, 11, 0.7f);
+        newEvent = new DialogueEvent(8, 11, 0.6f);
         newEvent.SetMessage("Your best friend moves away. You promise you'll stay in touch.");
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
@@ -594,13 +594,13 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(-10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(25, 29, 0.3f);
+        newEvent = new DialogueEvent(25, 29, 0.6f);
         newEvent.SetMessage("You’re asked: “Where do you see yourself in five years?” You lie.");
         newEvent.SetWork(10);
         newEvent.SetMeaningChange(-1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(28, 36, 0.15f);
+        newEvent = new DialogueEvent(28, 36, 0.8f);
         newEvent.SetMessage("You stay at your job longer than planned. The days blur into a LOOP.");
         newEvent.SetWork(11.2f);
         newEvent.SetHappinessChange(-10);
@@ -608,46 +608,46 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMoneyChange(20);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(25, 32, 0.2f);
+        newEvent = new DialogueEvent(25, 32, 0.3f);
         newEvent.SetMessage("You wonder if you should go back to school.");
-        newEvent.SetMeaning(25);
+        newEvent.SetMeaning(-25);
         newEvent.SetPlay(4.5f);
         newEvent.SetMeaningChange(3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(27, 35, 0.1f);
+        newEvent = new DialogueEvent(27, 35, 0.25f);
         newEvent.SetMessage("Your old friends from school start getting married. It feels weird.");
         newEvent.SetMoneyChange(-3f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(27, 37, 0.2f);
+        newEvent = new DialogueEvent(27, 37, 0.5f);
         newEvent.SetMessage("You meet someone invigorating at a birthday party. You talk for hours.");
         newEvent.SetSocial(4.5f);
         newEvent.SetHappinessChange(10f);
         newEvent.SetMeaningChange(4f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(29, 35, 0.1f);
+        newEvent = new DialogueEvent(29, 35, 0.3f);
         newEvent.SetMessage("You get a pet. You talk to them more than people.");
         newEvent.SetHappinessChange(20f);
         newEvent.SetMeaningChange(10f);
         newEvent.SetMoneyChange(-30);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(26, 32, 0.2f);
+        newEvent = new DialogueEvent(26, 32, 0.4f);
         newEvent.SetMessage("You buy your first real piece of furniture. It feels adult.");
         newEvent.SetMoney(75);
         newEvent.SetMoneyChange(-5);
         newEvent.SetMeaning(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(22, 30, 0.1f);
+        newEvent = new DialogueEvent(22, 30, 0.3f);
         newEvent.SetMessage("You say I love you to that someone and wait to hear it back.");
         newEvent.SetPlay(7);
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(25, 32, 0.6f);
-        newEvent.SetMessage("You miss a doctor’s appointment and don't reschedule it.");
+        newEvent.SetMessage("You miss a doctor’s appointment and don't reschedule.");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(22, 22, 1f);
@@ -663,35 +663,35 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(-4);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(30, 35, 0.05f);
+        newEvent = new DialogueEvent(30, 35, 0.2f);
         newEvent.SetMessage("You move again. You’re better at packing this time.");
         newEvent.SetHappinessChange(5);
         newEvent.SetMoneyChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(30, 36, 0.05f);
+        newEvent = new DialogueEvent(30, 36, 0.2f);
         newEvent.SetMessage("Your partner says you sound like your parents.");
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(26, 38, 0.1f);
+        newEvent = new DialogueEvent(26, 38, 0.7f);
         newEvent.SetMessage("You forget your friend's birthday.");
         newEvent.SetWork(23f);
         newEvent.SetMeaningChange(-3);
         newEvent.SetHappinessChange(-3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(31, 39, 0.1f);
+        newEvent = new DialogueEvent(31, 39, 0.25f);
         newEvent.SetMessage("You realize you’re not young anymore, but you’re not old either.");
         newEvent.SetMeaningChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(30, 35, 0.05f);
+        newEvent = new DialogueEvent(30, 35, 0.2f);
         newEvent.SetMessage("You finally fix something that has been broken for years.");
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(30, 42, 0.15f);
+        newEvent = new DialogueEvent(30, 42, 0.5f);
         newEvent.SetMessage("You go on holiday. You spend most of it trying to relax.");
         newEvent.SetMoney(200);
         newEvent.SetPlay(18);
@@ -699,25 +699,25 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(31, 43, 0.1f);
+        newEvent = new DialogueEvent(31, 43, 0.6f);
         newEvent.SetMessage("You host a dinner party. The plates don’t match, but no one cares.");
         newEvent.SetSocial(15.2f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(36, 44, 0.1f);
+        newEvent = new DialogueEvent(36, 44, 0.8f);
         newEvent.SetMessage("You watch your parents age. The weight of time passing starts to feel real.");
         newEvent.SetMeaning(30);
         newEvent.SetMeaningChange(3);
         newEvent.SetHealthChange(10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(39, 48, 0.1f);
+        newEvent = new DialogueEvent(39, 48, 0.5f);
         newEvent.SetMessage("You start getting invited to more kids’ birthdays than weddings.");
         newEvent.SetSocial(20);
         newEvent.SetHappinessChange(10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(21, 55, 0.05f);
+        newEvent = new DialogueEvent(21, 55, 0.5f);
         newEvent.SetMessage("You miss a work deadline. Nothing explodes.");
         newEvent.SetPlay(16.8f);
         newEvent.SetMeaningChange(3);
@@ -731,72 +731,72 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(40, 50, 0.1f);
+        newEvent = new DialogueEvent(40, 50, 0.4f);
         newEvent.SetMessage("You realize your childhood friends have become strangers.");
         newEvent.SetSocial(12.5f);
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(45, 51, 0.2f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(45f,50), 51, 0.5f);
         newEvent.SetMessage("You go out for one drink. You have a hangover the next day.");
         newEvent.SetSocial(16);
         newEvent.SetHealthChange(-2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(36, 55, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(36f,54), 55, 0.4f);
         newEvent.SetMessage("You cancel plans because you're tired. You feel a little guilty.");
         newEvent.SetHappiness(25);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(38, 60, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(38f,59), 60, 0.3f);
         newEvent.SetMessage("You find your first grey hair. You leave it.");
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(40, 58, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(40f,57), 58, 0.1f);
         newEvent.SetMessage("You wake up before everyone else. You enjoy the quiet.");
         newEvent.SetMeaningChange(1);
         newEvent.SetWork(16.4f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(35, 59, 0.3f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(35f,58), 59, 0.3f);
         newEvent.SetMessage("You throw a birthday party. It is more for them than you.");
         newEvent.SetHappinessChange(10f);
         newEvent.SetMeaningChange(2f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(50, 59, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(50f,58), 59, 0.2f);
         newEvent.SetMessage("You stay up late folding laundry.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(47, 59, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(47f,58), 59, 0.2f);
         newEvent.SetMessage("You and your partner sit across from each other in silence");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(38, 59, 0.05f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(38f,58), 59, 0.15f);
         newEvent.SetMessage("You split up. It’s not dramatic.");
         newEvent.SetWork(13.2f);
         newEvent.SetMeaningChange(4);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(42, 59, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(42f,58), 59, 0.4f);
         newEvent.SetMessage("You take a spontaneous trip. No one asks where you are.");
         newEvent.SetPlay(12f);
         newEvent.SetHappinessChange(20f);
         newEvent.SetMeaning(4);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(41, 59, 0.05f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(41f,58), 59, 0.4f);
         newEvent.SetMessage("You finally say no without explaining why or feeling guilt.");
         newEvent.SetMeaning(30);
         newEvent.SetHappinessChange(10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(42, 59, 0.05f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(42f,58), 59, 0.4f);
         newEvent.SetMessage("You start doing the thing you never had time for: " + lateLifeThings[UnityEngine.Random.Range(0, lateLifeThings.Length)] + ".");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(58, 62, 0.3f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(58f,61), 62, 0.3f);
         newEvent.SetMessage("You wake up and feel excited. It surprises you.");
         newEvent.SetPlay(12);
         newEvent.SetHappiness(60);
@@ -806,12 +806,12 @@ public class GameLogic : MonoBehaviour
 
         //senior dialogue
 
-        newEvent = new DialogueEvent(60, 60, 0.5f);
+        newEvent = new DialogueEvent(60, 61, 0.5f);
         newEvent.SetMessage("You buy new dishes. Not because you need them, but because you want them.");
         newEvent.SetMoney(80);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(61, 61, 1f);
+        newEvent = new DialogueEvent(61, 62, 1f);
         newEvent.SetMessage("You reconnect with old friends. You all look older.");
         newEvent.SetSocial(18.3f);
         newEvent.SetMeaningChange(3);
@@ -823,18 +823,18 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(60, 75, 0.05f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60f,74), 75, 0.4f);
         newEvent.SetMessage("You get glasses. You actually like how they look.");
         newEvent.SetHealthChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(63, 67, 1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(63f,66), 67, 0.4f);
         newEvent.SetMessage("You read a book that you never finished.");
         newEvent.SetMeaningChange(1);
         newEvent.SetPlay(15);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(50, 68, 1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(50f,60), 68, 1f);
         newEvent.SetMessage("You start mentoring someone younger. They listen.");
         newEvent.SetWork(20);
         newEvent.SetMeaningChange(3);
@@ -891,7 +891,7 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(80, 120, 1f);
         newEvent.SetHealth(3f);
-        newEvent.SetHealthChange(-3);
+        newEvent.SetHealthChange(-2);
         newEvent.SetMessage("You close your eyes and feel the world one last time.");
         dialogueEvents.Add(newEvent);
 
