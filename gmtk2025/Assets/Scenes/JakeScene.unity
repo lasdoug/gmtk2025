@@ -188,6 +188,8 @@ MonoBehaviour:
   - {fileID: 2118455413}
   - {fileID: 2118455412}
   - {fileID: 2118455411}
+  - {fileID: 1506998626}
+  - {fileID: 834827277}
 --- !u!4 &19318854
 Transform:
   m_ObjectHideFlags: 0
@@ -1275,6 +1277,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
+--- !u!114 &834827277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6431259045041113842, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+  m_PrefabInstance: {fileID: 2118455410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eea185a5f219c64ba097e478b5b101b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &881408371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2335,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1506998626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4251054283547612381, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+  m_PrefabInstance: {fileID: 2118455410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eea185a5f219c64ba097e478b5b101b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1537949122
@@ -3575,6 +3599,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2458745071546504393, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_text
+      value: Become filthy rich.
+      objectReference: {fileID: 0}
     - target: {fileID: 2577885731582944319, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_Name
       value: earlyactor
@@ -3604,6 +3632,10 @@ PrefabInstance:
       value: Reach age 20 without ever learning to walk.
       objectReference: {fileID: 0}
     - target: {fileID: 4095424148971304980, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_text
+      value: CAPITAL GAINS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095424148971304980, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -3618,6 +3650,10 @@ PrefabInstance:
     - target: {fileID: 4700193309011584830, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_text
       value: Reach 100 yin/yang.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729233442552023782, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_text
+      value: Become so unhappy you lose your mind.
       objectReference: {fileID: 0}
     - target: {fileID: 5306791184963533087, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -3710,6 +3746,10 @@ PrefabInstance:
     - target: {fileID: 6488428563498159261, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587488413456148027, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
+      propertyPath: m_text
+      value: INSANITY
       objectReference: {fileID: 0}
     - target: {fileID: 6587488413456148027, guid: 828f51fd1cbe78a4c8bc7807b2101892, type: 3}
       propertyPath: m_hasFontAssetChanged
