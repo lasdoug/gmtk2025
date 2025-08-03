@@ -68,6 +68,7 @@ public class GameLogic : MonoBehaviour
     string[] achievements = { "helloworld", "helloworldagain", "superchargedbaby", "centenarian", "truemeaning", "immovableobject", "silent", "earlyactor", "playful", "desertislanddisc" };
     public List<HoverOverSlot> slots;
     bool hobbyFlag = false;
+    bool bandFlag = false;
     List<DialogueEvent> dialogueEvents = new();
     string[] bands = { "SYSTEM OF A DOWN", "BLINK-182", "LINKIN PARK", "GREEN DAY", "WEIRD AL", "MUSE", "THE ARCTIC MONKEYS", "EZRA COLLECTIVE", "PORTISHEAD", "MASSIVE ATTACK", "THE PRODIGY", "ALT-J", "FOO FIGHTERS", "SOUNDGARDEN" };
     string[] firstWords = { "THROAT", "RICE", "CAR", "NOODLES", "MOMMA", "DADDA", "CELERY", "FRESCO", "CONGLOMERATE", "NO" };
@@ -80,6 +81,8 @@ public class GameLogic : MonoBehaviour
         public float lower, upper;
         public float chance, work = 0, play = 0, social = 0, exercise = 0, happiness = 0, health = 0, money = 0, meaning = 0, happinesschange = 0, healthchange = 0, moneychange = 0, meaningchange = 0;
         public string message;
+        public bool changeHobbyFlag = false;
+        public bool changeBandFlag = false;
         public DialogueEvent(float lowerAge, float upperAge, float chanceOfOccurance)
         {
             lower = lowerAge + UnityEngine.Random.Range(0f, 0.5f);
@@ -101,6 +104,8 @@ public class GameLogic : MonoBehaviour
                     GameLogic.health += healthchange;
                     GameLogic.money += moneychange;
                     GameLogic.meaning += meaningchange;
+                    if (changeHobbyFlag) gameLogic.hobbyFlag = true;
+                    if (changeBandFlag) gameLogic.bandFlag = true;
                 }
                 chance = -1;
             }
@@ -296,6 +301,7 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(2, 11, 1);
         newEvent.SetMessage("You have a newfound appreciation for " + hobbies[UnityEngine.Random.Range(0, hobbies.Length)] + ".");
+        newEvent.changeHobbyFlag = true;
         newEvent.SetPlay(1.5f);
         newEvent.SetMeaningChange(10);
         dialogueEvents.Add(newEvent);
@@ -336,6 +342,7 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(UnityEngine.Random.Range(12f, 13), 14, 0.7f);
         newEvent.SetMessage("You and your new mates discover " + bands[UnityEngine.Random.Range(0, bands.Length)] + ".");
+        newEvent.changeBandFlag = true;
         newEvent.SetSocial(1.9f);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
@@ -971,6 +978,8 @@ public class GameLogic : MonoBehaviour
         UpdateCumulativeValues();
         UpdateStatText();
         DoChecks();
+
+        CheckAchievements();
     }
 
     void Send(string str)
@@ -1249,8 +1258,24 @@ public class GameLogic : MonoBehaviour
         cumMeaning = 0;
     }
 
+    void ReloadAchievements()
+    {
+        for(int i=0; i<achievements.Length; i++)
+        {
+            if (PlayerPrefs.GetInt(achievements[i]) == 1)
+            {
+                slots[i].SetAchieved();
+            }
+        }
+    }
+
     void CheckAchievements()
     {
+        if (!slots[3].GetAchieved() && year >= 100)
+        {
+            slots[3].SetAchieved();
+            PlayerPrefs.SetInt(achievements[3], 1);
+        }
         if (!slots[6].GetAchieved() && cumSocial < 0.71f && year >= 40)
         {
             slots[6].SetAchieved();
@@ -1265,6 +1290,16 @@ public class GameLogic : MonoBehaviour
         {
             slots[7].SetAchieved();
             PlayerPrefs.SetInt(achievements[7], 1);
+        }
+        if (!slots[8].GetAchieved() && hobbyFlag)
+        {
+            slots[8].SetAchieved();
+            PlayerPrefs.SetInt(achievements[8], 1);
+        }
+        if (!slots[9].GetAchieved() && bandFlag)
+        {
+            slots[9].SetAchieved();
+            PlayerPrefs.SetInt(achievements[9], 1);
         }
     }
     
