@@ -242,6 +242,7 @@ public class GameLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        resetCumValues();
         dialogueBox = FindAnyObjectByType<NotifScript>();
         Send("You are born. Hello, world.");
         ageText.text = "AGE: 0";
