@@ -896,7 +896,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You close your eyes and feel the world one last time.");
         dialogueEvents.Add(newEvent);
 
-        Debug.Log(dialogueEvents.Count);
+        ReloadAchievements();
     }
 
     // Update is called once per frame
@@ -904,6 +904,12 @@ public class GameLogic : MonoBehaviour
     {
         if (health <= 0)
         {
+            if (!slots[2].GetAchieved() && year < 2)
+            {
+                slots[2].SetAchieved();
+                PlayerPrefs.SetInt(achievements[2], 1);
+            }
+            PlayerPrefs.Save();
             DOTween.KillAll();
             SceneManager.LoadScene(3);
         }
@@ -1267,7 +1273,17 @@ public class GameLogic : MonoBehaviour
 
     void ReloadAchievements()
     {
-        for(int i=0; i<achievements.Length; i++)
+        if (PlayerPrefs.GetInt(achievements[0]) == 1)
+        {
+            slots[1].SetAchieved();
+            PlayerPrefs.SetInt(achievements[1], 1);
+        }
+        else
+        {
+            slots[0].SetAchieved();
+            PlayerPrefs.SetInt(achievements[0], 1);
+        }
+        for (int i = 0; i < achievements.Length; i++)
         {
             if (PlayerPrefs.GetInt(achievements[i]) == 1)
             {
@@ -1282,6 +1298,11 @@ public class GameLogic : MonoBehaviour
         {
             slots[3].SetAchieved();
             PlayerPrefs.SetInt(achievements[3], 1);
+        }
+        if (!slots[4].GetAchieved() && meaning > 99)
+        {
+            slots[4].SetAchieved();
+            PlayerPrefs.SetInt(achievements[4], 1);
         }
         if (!slots[6].GetAchieved() && cumSocial < 0.71f && year >= 40)
         {

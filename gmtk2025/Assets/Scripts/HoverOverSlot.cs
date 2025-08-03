@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class HoverOverSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     RawImage image;
-    Color hoverColour = Color.white;
-    Color normalColour = Color.grey;
+    Color hoverColour = Color.grey;
+    Color normalColour = Color.black;
     public GameObject iconObject;
     public GameObject description;
     bool hasIcon = false;
