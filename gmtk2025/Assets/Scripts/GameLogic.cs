@@ -66,7 +66,8 @@ public class GameLogic : MonoBehaviour
     public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
 
     List<DialogueEvent> dialogueEvents = new();
-    string[] firstWords = { "throat", "rice", "car", "noodles", "momma", "dad", "celery", "fresco", "conglomerate", "yes", "no" };
+    string[] firstWords = { "THROAT", "RICE", "CAR", "NOODLES", "MOMMA", "DADDA", "CELERY", "FRESCO", "CONGLOMERATE",  "NO" };
+    string [] hobbies = {"DINOSAURS", "TRUCKS", "THE STOCK MARKET", "MAGIC", "MAGIC THE GATHERING", "BUGS", "BASS GUITAR"};
 
     class DialogueEvent
     {
@@ -111,22 +112,28 @@ public class GameLogic : MonoBehaviour
             {
                 ans = ans && GameLogic.cumWork >= work;
             }
-            if (play < 0) {
+            if (play < 0)
+            {
                 ans = ans && GameLogic.cumHobbies <= -play;
             }
-            else if (play > 0) {
+            else if (play > 0)
+            {
                 ans = ans && GameLogic.cumHobbies >= play;
             }
-            if (social < 0) {
+            if (social < 0)
+            {
                 ans = ans && GameLogic.cumSocial <= -social;
             }
-            else if (social > 0) {
+            else if (social > 0)
+            {
                 ans = ans && GameLogic.cumSocial >= social;
             }
-            if (exercise < 0) {
+            if (exercise < 0)
+            {
                 ans = ans && GameLogic.cumExercise <= -exercise;
             }
-            else if (exercise > 0){
+            else if (exercise > 0)
+            {
                 ans = ans && GameLogic.cumExercise >= exercise;
             }
 
@@ -138,22 +145,28 @@ public class GameLogic : MonoBehaviour
             {
                 ans = ans && gameLogic.happiness >= happiness;
             }
-            if (health < 0) {
+            if (health < 0)
+            {
                 ans = ans && gameLogic.health <= -health;
             }
-            else if (health > 0){
+            else if (health > 0)
+            {
                 ans = ans && gameLogic.health >= health;
             }
-            if (money < 0) {
+            if (money < 0)
+            {
                 ans = ans && gameLogic.money <= -money;
             }
-            else if (money > 0){
+            else if (money > 0)
+            {
                 ans = ans && gameLogic.money >= money;
             }
-            if (meaning < 0) {
+            if (meaning < 0)
+            {
                 ans = ans && gameLogic.meaning <= -meaning;
             }
-            else if (meaning > 0){
+            else if (meaning > 0)
+            {
                 ans = ans && gameLogic.meaning >= meaning;
             }
             return ans;
@@ -251,17 +264,44 @@ public class GameLogic : MonoBehaviour
         DialogueEvent newEvent;
         newEvent = new DialogueEvent(1, 100, 1);
         newEvent.SetExercise(0.36f);
-        newEvent.SetMessage("You learned to walk.");
+        newEvent.SetMessage("You learn to walk.");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(1, 100, 1);
-        newEvent.SetMessage("You learned to talk. Your first word is " + firstWords[UnityEngine.Random.Range(0,firstWords.Length)] + ".");
+        newEvent.SetMessage("You learn to talk. Your first word is " + firstWords[UnityEngine.Random.Range(0,firstWords.Length)] + ".");
         newEvent.SetSocial(0.72f);
         dialogueEvents.Add(newEvent);
 
+        newEvent = new DialogueEvent(6, 11, 1);
+        newEvent.SetMessage("You are an extremely healthy child.");
+        newEvent.SetHealth(2.88f);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(2, 10, 1);
+        newEvent.SetMessage("You feel sad for the first time. You don't know why.");
+        newEvent.SetHappiness(-8f);
+        newEvent.SetMeaningChange(2);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(2, 11, 1);
+        newEvent.SetMessage("You have a newfound appreciation for " + hobbies[UnityEngine.Random.Range(0,hobbies.Length)] + ".");
+        newEvent.SetPlay(1.5f);
+        newEvent.SetMeaningChange(10);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(7, 7, 1);
+        newEvent.SetMessage("You have an 7th birthday party. It's alright.");
+        dialogueEvents.Add(newEvent);
+
         newEvent = new DialogueEvent(UnityEngine.Random.Range(6,13), 14, 0.25f);
-        newEvent.SetMessage("You found £20 on the floor.");
-        newEvent.SetMoneyChange(3f);
+        newEvent.SetMessage("You find £5 on the floor. You take it.");
+        newEvent.SetMoneyChange(5f);
+        newEvent.SetMeaningChange(-2);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(8, 11, 0.7f);
+        newEvent.SetMessage("Your best friend moves away. You promise you'll stay in touch.");
+        newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
         //adolescent
