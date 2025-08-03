@@ -891,7 +891,7 @@ public class GameLogic : MonoBehaviour
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(80, 120, 1f);
-        newEvent.SetHealth(3f);
+        newEvent.SetHealth(-3f);
         newEvent.SetHealthChange(-2);
         newEvent.SetMessage("You close your eyes and feel the world one last time.");
         dialogueEvents.Add(newEvent);
@@ -935,7 +935,7 @@ public class GameLogic : MonoBehaviour
 
         while (yearCounter >= yearLength)
         {
-            if(year > 30) flatReductions[1] = (flatReductions[1] - 0.02f) * 1.03f;
+            if(year > 30) flatReductions[1] = (flatReductions[1] - 0.03f) * 1.05f;
             yearCounter -= yearLength;
             year++;
             ageText.text = "AGE: " + year;
@@ -1269,6 +1269,7 @@ public class GameLogic : MonoBehaviour
         cumHealth = 0;
         cumMoney = 0;
         cumMeaning = 0;
+        year = 0;
     }
 
 
