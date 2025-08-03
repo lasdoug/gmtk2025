@@ -13,11 +13,11 @@ public class endScreenScript : MonoBehaviour
     private float cumMoney;
     private float cumMeaning;
     public int age;
-    private int[] ageCompare = { 20, 60, 100 };
-    private float[] cumHappinessCompare = { 0.6f, 1.2f, 2.0f };
-    private float[] cumHealthCompare = { 0.6f, 1.2f, 2.0f };
-    private float[] cumMoneyCompare = { 0.6f, 1.2f, 2.0f };
-    private float[] cumMeaningCompare = { 0.15f, 0.4f, 1.0f };
+    private int[] ageCompare = { 20, 40, 60, 100 };
+    private float[] cumHappinessCompare = { -1f, 0f, 0.6f, 1.2f, 2.0f, 3.0f, 4.0f };
+    private float[] cumHealthCompare = { 0.6f, 1.2f, 2.0f , 3.2f, 4.1f };
+    private float[] cumMoneyCompare = { 0.4f, 1.0f, 1.7f, 2.6f, 3.6f, 4.6f };
+    private float[] cumMeaningCompare = { 0.15f, 0.4f, 0.7f, 1.0f };
 
     private enum personal
     {
@@ -40,19 +40,19 @@ public class endScreenScript : MonoBehaviour
         cumMoney = (GameLogic.cumMoney)/(float)age;
         cumMeaning = (GameLogic.cumMeaning)/(float)age;
 
+        //for testing
+        //age = Random.Range(0, 130);
+        //cumHappiness = Random.Range(-2.0f, 5.0f);
+        //cumHealth = Random.Range(0f, 5.0f);
+        //cumMoney = Random.Range(0f, 5f);
+        //cumMeaning = Random.Range(0f, 1.2f);
+        
         print("year: " + GameLogic.year);
         print("Age: " + age);
         print("Happiness: " + cumHappiness);
         print("Health: " + cumHealth);
         print("Money: " + cumMoney);
         print("Meaning: " + cumMeaning);
-
-        //for testing
-        // age = Random.Range(0, 130);
-        // cumHappiness = Random.Range(0, 400);
-        // cumHealth = Random.Range(0, 400);
-        // cumMoney = Random.Range(0, 400);
-        // cumMeaning = Random.Range(0, 400);
 
         //Make Text String
         myText.text = MakeText();
@@ -65,7 +65,7 @@ public class endScreenScript : MonoBehaviour
         string cHealth = "";
         string cMoney = "";
         string cMeaning = "";
-        float score = Mathf.Floor(((cumHappiness + cumHealth + cumMoney + cumMeaning)));
+        float score = Mathf.Floor(((cumHappiness + cumHealth + cumMoney + cumMeaning)*age));
         string cScore = score.ToString();
         string andButAgeHappy = "";
         string andButHealthMoney = "";
@@ -101,6 +101,10 @@ public class endScreenScript : MonoBehaviour
         }
         else if (age < ageCompare[2])
         {
+            cAge = "until middle age";
+        }
+        else if (age < ageCompare[3])
+        {
             cAge = "a long life";
         }
         else
@@ -111,19 +115,35 @@ public class endScreenScript : MonoBehaviour
         //HAPPINESS
         if (cumHappiness < cumHappinessCompare[0])
         {
-            cHappy = "sad";  
+            cHappy = "the saddest person to ever live";  
         }
         else if (cumHappiness < cumHappinessCompare[1])
         {
-            cHappy = "kinda sad";
+            cHappy = "extremely sad";
         }
         else if (cumHappiness < cumHappinessCompare[2])
         {
+            cHappy = "sad";
+        }
+        else if (cumHappiness < cumHappinessCompare[3])
+        {
+            cHappy = "kinda sad";
+        }
+        else if (cumHappiness < cumHappinessCompare[4])
+        {
             cHappy = "happy";
+        }
+        else if (cumHappiness < cumHappinessCompare[5])
+        {
+            cHappy = "very happy";
+        }
+        else if (cumHappiness < cumHappinessCompare[6])
+        {
+            cHappy = "extremely happy";
         }
         else
         {
-            cHappy = "very happy";
+            cHappy = "the happiest person to ever live";
         }
 
         //HEALTH
@@ -133,21 +153,29 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumHealth < cumHealthCompare[1])
         {
-            cHealth = "a lil unfit";
+            cHealth = "a quite unfit";
         }
         else if (cumHealth < cumHealthCompare[2])
         {
             cHealth = "healthy";
         }
+        else if (cumHealth < cumHealthCompare[3])
+        {
+            cHealth = "a regular at your gym";
+        }
+        else if (cumHealth < cumHealthCompare[4])
+        {
+            cHealth = "a local sporting icon";
+        }
         else
         {
-            cHealth = "very healthy";
+            cHealth = "could run marathons in your sleep";
         }
 
         //Money
         if (cumMoney < cumMoneyCompare[0])
         {
-            cMoney = "poor";
+            cMoney = "had no money to your name";
         }
         else if (cumMoney < cumMoneyCompare[1])
         {
@@ -155,11 +183,23 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumMoney < cumMoneyCompare[2])
         {
-            cMoney = "doing well financially";
+            cMoney = "doing okay financially";
+        }
+        else if (cumMoney < cumMoneyCompare[3])
+        {
+            cMoney = "owned a house and a dog";
+        }
+        else if (cumMoney < cumMoneyCompare[4])
+        {
+            cMoney = "owned quite a few nice cars";
+        }
+        else if (cumMoney < cumMoneyCompare[5])
+        {
+            cMoney = "had 2 mansions and a private jet";
         }
         else
         {
-            cMoney = "exorbitantly rich";
+            cMoney = "frequently went to space as a holiday";
         }
 
         //Meaning
@@ -174,6 +214,10 @@ public class endScreenScript : MonoBehaviour
         else if (cumMeaning < cumMeaningCompare[2])
         {
             cMeaning = "had a strong life direction";
+        }
+        else if (cumMeaning < cumMeaningCompare[3])
+        {
+            cMeaning = "had many life experiences";
         }
         else
         {
