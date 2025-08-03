@@ -244,7 +244,6 @@ public class GameLogic : MonoBehaviour
     {
         resetCumValues();
         dialogueBox = FindAnyObjectByType<NotifScript>();
-        Send("You are born. Hello, world.");
         ageText.text = "AGE: 0";
         animator = new DOTweenTMPAnimator(energyText);
         SliderChanged();

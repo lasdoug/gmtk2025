@@ -8,7 +8,7 @@ public class NotifScript : MonoBehaviour
     public TMP_Text firstMessage, old1, old2, old3;
     string recent = "";
     Queue messages = new Queue();
-    float timer = 0.05f;
+    float timer = 0f;
     float maxWidth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,6 +18,7 @@ public class NotifScript : MonoBehaviour
         old1.text = "";
         old2.text = "";
         old3.text = "";
+        QueueMessage("You are born. Hello, world.");
     }
 
     // Update is called once per frame
