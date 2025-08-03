@@ -8,16 +8,17 @@ public class endScreenScript : MonoBehaviour
     private float cumHobbies = 0;
     private float cumSocial = 0;
     private float cumExercise = 0;
-    public float cumHappiness = 0f;
-    public float cumHealth = 0f;
-    public float cumMoney = 0f;
-    public float cumMeaning = 0f;
-    public int age = 0;
-    public int[] ageCompare = { 10, 40, 70 };
-    public float[] cumHappinessCompare = { 100, 200, 300 };
-    public float[] cumHealthCompare = { 100, 200, 300 };
-    public float[] cumMoneyCompare = { 100, 200, 300 };
-    public float[] cumMeaningCompare = { 100, 200, 300 };
+    private float cumHappiness;
+    private float cumHealth;
+    private float cumMoney;
+    private float cumMeaning;
+    public int age;
+    private int[] ageCompare = { 20, 60, 100 };
+    private float[] cumHappinessCompare = { 0.6f, 1.2f, 2.0f };
+    private float[] cumHealthCompare = { 0.6f, 1.2f, 2.0f };
+    private float[] cumMoneyCompare = { 0.6f, 1.2f, 2.0f };
+    private float[] cumMeaningCompare = { 0.15f, 0.4f, 1.0f };
+
     private enum personal
     {
         happiness = 0,
@@ -34,10 +35,17 @@ public class endScreenScript : MonoBehaviour
         cumHobbies = GameLogic.cumHobbies;
         cumSocial = GameLogic.cumSocial;
         cumExercise = GameLogic.cumExercise;
-        cumHappiness = GameLogic.cumHappiness;
-        cumHealth = GameLogic.cumHealth;
-        cumMoney = GameLogic.cumMoney;
-        cumMeaning = GameLogic.cumMeaning;
+        cumHappiness = (GameLogic.cumHappiness)/(float)age;
+        cumHealth = (GameLogic.cumHealth)/(float)age;
+        cumMoney = (GameLogic.cumMoney)/(float)age;
+        cumMeaning = (GameLogic.cumMeaning)/(float)age;
+
+        print("year: " + GameLogic.year);
+        print("Age: " + age);
+        print("Happiness: " + cumHappiness);
+        print("Health: " + cumHealth);
+        print("Money: " + cumMoney);
+        print("Meaning: " + cumMeaning);
 
         //for testing
         // age = Random.Range(0, 130);
@@ -45,7 +53,7 @@ public class endScreenScript : MonoBehaviour
         // cumHealth = Random.Range(0, 400);
         // cumMoney = Random.Range(0, 400);
         // cumMeaning = Random.Range(0, 400);
-    
+
         //Make Text String
         myText.text = MakeText();
     }
