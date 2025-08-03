@@ -7,6 +7,13 @@ public class EndScreenMoney : MonoBehaviour
     void Start()
     {
         Text = GetComponent<TextMeshProUGUI>();
-        Text.text = Mathf.Floor(GameLogic.money).ToString();
+        if (GameLogic.money < 0)
+        {
+            Text.text = "0";
+        }
+        else
+        {
+            Text.text = Mathf.Floor(GameLogic.money).ToString();
+        }
     }
 }

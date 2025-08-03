@@ -7,7 +7,14 @@ public class EndScreenHealth : MonoBehaviour
     void Start()
     {
         Text = GetComponent<TextMeshProUGUI>();
-        Text.text = Mathf.Floor(GameLogic.health).ToString();
+        if (GameLogic.health < 0)
+        {
+            Text.text = "0";
+        }
+        else
+        {
+            Text.text = Mathf.Floor(GameLogic.health).ToString();
+        }
     }
 }
 

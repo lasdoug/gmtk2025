@@ -7,6 +7,13 @@ public class EndScreenMeaning : MonoBehaviour
     void Start()
     {
         Text = GetComponent<TextMeshProUGUI>();
-        Text.text = Mathf.Floor(GameLogic.meaning).ToString();
+        if (GameLogic.meaning < 0)
+        {
+            Text.text = "0";
+        }
+        else
+        {
+            Text.text = Mathf.Floor(GameLogic.meaning).ToString();
+        }
     }
 }

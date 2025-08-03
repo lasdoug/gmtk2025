@@ -7,6 +7,13 @@ public class EndScreenHappiness : MonoBehaviour
     void Start()
     {
         hText = GetComponent<TextMeshProUGUI>();
-        hText.text = Mathf.Floor(GameLogic.happiness).ToString();
+        if (GameLogic.happiness < 0)
+        {
+            hText.text = "0";
+        }
+        else
+        {
+            hText.text = Mathf.Floor(GameLogic.happiness).ToString();
+        }
     }
 }
