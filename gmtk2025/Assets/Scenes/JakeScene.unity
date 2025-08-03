@@ -170,10 +170,10 @@ MonoBehaviour:
   yearCounter: 0
   energy: 0
   maxEnergy: 20
-  happiness: 50
+  happiness: 10
   health: 50
-  money: 50
-  meaning: 50
+  money: 0
+  meaning: 0
   scaling: 0.1
   dropoffMultipliers:
   - 1
@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_Value
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1572,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_Value
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1650,8 +1650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d93e5645807642b44f884485be68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kidUpperBound: 2
-  AdultUpperBound: 4
+  kidUpperBound: 18
+  AdultUpperBound: 60
   kidBkgColor: {r: 0.5294118, g: 0.58431375, b: 0.63529414, a: 1}
   adultBkgColor: {r: 0.3254902, g: 0.27450982, b: 0.4117647, a: 1}
   seniorBkgColor: {r: 0.36862746, g: 0.34117648, b: 0.30980393, a: 1}
@@ -1930,7 +1930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_Value
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5460196960217614303, guid: 2eba44eb688c2fc46bc5c23a3aeb38b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
