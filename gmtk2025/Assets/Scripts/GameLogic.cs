@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
 {
     public GameObject pauseOverlay;
     public StatBlockScript happinessDisplay, healthDisplay, moneyDisplay, meaningDisplay;
-    bool isPaused = false;
+    public bool isPaused = false;
     bool forcedPause = false;
     public TMP_Text ageText;
     public TMP_Text energyText;
@@ -1257,6 +1257,7 @@ public class GameLogic : MonoBehaviour
         cumMoney = 0;
         cumMeaning = 0;
     }
+
 
     void ReloadAchievements()
     {

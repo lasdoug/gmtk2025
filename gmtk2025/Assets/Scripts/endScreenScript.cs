@@ -40,20 +40,14 @@ public class endScreenScript : MonoBehaviour
         cumMeaning = GameLogic.cumMeaning;
 
         //for testing
-        age = Random.Range(0, 130);
-        cumHappiness = Random.Range(0, 400);
-        cumHealth = Random.Range(0, 400);
-        cumMoney = Random.Range(0, 400);
-        cumMeaning = Random.Range(0, 400);
+        // age = Random.Range(0, 130);
+        // cumHappiness = Random.Range(0, 400);
+        // cumHealth = Random.Range(0, 400);
+        // cumMoney = Random.Range(0, 400);
+        // cumMeaning = Random.Range(0, 400);
     
         //Make Text String
         myText.text = MakeText();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     string MakeText()
@@ -63,7 +57,7 @@ public class endScreenScript : MonoBehaviour
         string cHealth = "";
         string cMoney = "";
         string cMeaning = "";
-        float score = ((cumHappiness + cumHealth + cumMoney + cumMeaning));
+        float score = Mathf.Floor(((cumHappiness + cumHealth + cumMoney + cumMeaning)));
         string cScore = score.ToString();
         string andButAgeHappy = "";
         string andButHealthMoney = "";
@@ -178,7 +172,7 @@ public class endScreenScript : MonoBehaviour
             cMeaning = "were zen like monk";
         }
 
-        return "Score: " + cScore + "\nYou lived " + cAge + andButAgeHappy + "you were " + cHappy
+        return "Score: " + cScore + " Age: " + age + "\nYou lived " + cAge + andButAgeHappy + "you were " + cHappy
         + ". \nYou were " + cHealth + andButHealthMoney + cMoney + ". \nYou " + cMeaning + ".";
     }
 
