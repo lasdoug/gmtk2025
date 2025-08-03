@@ -37,20 +37,15 @@ public class HoverOverSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    public void GiveIcon(Texture2D iconImg, string name, string desc)
+    public void SetAchieved()
     {
-        iconObject.SetActive(true);
-        iconObject.GetComponent<RawImage>().texture = iconImg;
-        description.GetComponent<DescriptionScript>().SetDescription(name, desc);
         hasIcon = true;
-        holding = name;
+        iconObject.SetActive(true);
     }
 
-    public void RemoveIcon()
+    public bool GetAchieved()
     {
-        holding = "";
-        hasIcon = false;
-        iconObject.SetActive(false);
+        return hasIcon;
     }
 
 }

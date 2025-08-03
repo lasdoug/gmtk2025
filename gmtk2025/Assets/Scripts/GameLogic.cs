@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
     public GameObject pauseOverlay;
     public StatBlockScript happinessDisplay, healthDisplay, moneyDisplay, meaningDisplay;
-    public bool isPaused = false;
+    bool isPaused = false;
     bool forcedPause = false;
     public TMP_Text ageText;
     public TMP_Text energyText;
@@ -27,13 +26,14 @@ public class GameLogic : MonoBehaviour
     float tickCounter = 0f;
     public float yearLength = 3.75f;
     public float yearCounter = 0f;
+    float burnoutCounter = 0f;
     public static int year = 0;
     public int energy = 0;
     public int maxEnergy = 40;
-    public float happiness = 50f;
-    public float health = 90f;
-    public float money = 0f;
-    public float meaning = 0f;
+    public static float happiness = 50f;
+    public static float health = 90f;
+    public static float money = 0f;
+    public static float meaning = 0f;
 
     bool energyTweening = false;
     DOTweenTMPAnimator animator;
@@ -65,11 +65,14 @@ public class GameLogic : MonoBehaviour
 
     public static float cumWork, cumHobbies, cumSocial, cumExercise, cumHappiness, cumHealth, cumMoney, cumMeaning;
 
+    string[] achievements = { "helloworld", "helloworldagain", "superchargedbaby", "centenarian", "truemeaning", "immovableobject", "silent", "earlyactor", "playful", "desertislanddisc" };
+    public List<HoverOverSlot> slots;
+    bool hobbyFlag = false;
     List<DialogueEvent> dialogueEvents = new();
     string[] bands = { "SYSTEM OF A DOWN", "BLINK-182", "LINKIN PARK", "GREEN DAY", "WEIRD AL", "MUSE", "THE ARCTIC MONKEYS", "EZRA COLLECTIVE", "PORTISHEAD", "MASSIVE ATTACK", "THE PRODIGY", "ALT-J", "FOO FIGHTERS", "SOUNDGARDEN" };
-    string[] firstWords = { "THROAT", "RICE", "CAR", "NOODLES", "MOMMA", "DADDA", "CELERY", "FRESCO", "CONGLOMERATE",  "NO" };
-    string [] hobbies = {"DINOSAURS", "TRUCKS", "THE STOCK MARKET", "MAGIC", "MAGIC THE GATHERING", "BUGS", "BASS GUITAR", "MAHJONG"};
-    string [] personalProjects = {"A FILM ABOUT DUST", "AN INDIE GAME ABOUT FOXES", "AN EP OF HOUSE MUSIC", "A PAINTING OF YOUR HOUSE"};
+    string[] firstWords = { "THROAT", "RICE", "CAR", "NOODLES", "MOMMA", "DADDA", "CELERY", "FRESCO", "CONGLOMERATE", "NO" };
+    string[] hobbies = { "DINOSAURS", "TRUCKS", "THE STOCK MARKET", "MAGIC", "MAGIC THE GATHERING", "BUGS", "BASS GUITAR", "MAHJONG" };
+    string[] personalProjects = { "A FILM ABOUT DUST", "AN INDIE GAME ABOUT FOXES", "AN EP OF HOUSE MUSIC", "A PAINTING OF YOUR HOUSE" };
     string[] lateLifeThings = { "MODULAR SYNTHESIS", "ANALOG CAMERAS", "ARTISNAL COFFEE", "FERMENTATION" };
     class DialogueEvent
     {
@@ -94,10 +97,10 @@ public class GameLogic : MonoBehaviour
                 if (UnityEngine.Random.Range(0f, 1f) <= chance)
                 {
                     gameLogic.Send(message);
-                    gameLogic.happiness += happinesschange;
-                    gameLogic.health += healthchange;
-                    gameLogic.money += moneychange;
-                    gameLogic.meaning += meaningchange;
+                    GameLogic.happiness += happinesschange;
+                    GameLogic.health += healthchange;
+                    GameLogic.money += moneychange;
+                    GameLogic.meaning += meaningchange;
                 }
                 chance = -1;
             }
@@ -141,35 +144,35 @@ public class GameLogic : MonoBehaviour
 
             if (happiness < 0)
             {
-                ans = ans && gameLogic.happiness <= -happiness;
+                ans = ans && GameLogic.happiness <= -happiness;
             }
             else if (happiness > 0)
             {
-                ans = ans && gameLogic.happiness >= happiness;
+                ans = ans && GameLogic.happiness >= happiness;
             }
             if (health < 0)
             {
-                ans = ans && gameLogic.health <= -health;
+                ans = ans && GameLogic.health <= -health;
             }
             else if (health > 0)
             {
-                ans = ans && gameLogic.health >= health;
+                ans = ans && GameLogic.health >= health;
             }
             if (money < 0)
             {
-                ans = ans && gameLogic.money <= -money;
+                ans = ans && GameLogic.money <= -money;
             }
             else if (money > 0)
             {
-                ans = ans && gameLogic.money >= money;
+                ans = ans && GameLogic.money >= money;
             }
             if (meaning < 0)
             {
-                ans = ans && gameLogic.meaning <= -meaning;
+                ans = ans && GameLogic.meaning <= -meaning;
             }
             else if (meaning > 0)
             {
-                ans = ans && gameLogic.meaning >= meaning;
+                ans = ans && GameLogic.meaning >= meaning;
             }
             return ans;
         }
@@ -274,6 +277,12 @@ public class GameLogic : MonoBehaviour
         newEvent.SetSocial(0.72f);
         dialogueEvents.Add(newEvent);
 
+        newEvent = new DialogueEvent(1, 11, 1);
+        newEvent.SetMessage("Your insane work ethic nets you an good acting role. It's gruelling.");
+        newEvent.SetWork(3.2f);
+        newEvent.SetHappinessChange(-20);
+        dialogueEvents.Add(newEvent);
+
         newEvent = new DialogueEvent(6, 11, 1);
         newEvent.SetMessage("You are an extremely healthy child.");
         newEvent.SetHealth(175);
@@ -281,7 +290,7 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(2, 10, 1);
         newEvent.SetMessage("You feel sad for the first time. You don't know why.");
-        newEvent.SetHappiness(-8f);
+        newEvent.SetHappinessChange(-8f);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
@@ -321,131 +330,131 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(11.5f, 12, 0.6f);
         newEvent.SetMessage("You got a C on your first test. You might work harder.");
-        newEvent.SetWork(0.5f);
+        newEvent.SetWork(-0.5f);
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(12,13), 14, 0.7f);
-        newEvent.SetMessage("You and your new mates discover " + bands[UnityEngine.Random.Range(0,bands.Length)]+".");
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(12f, 13), 14, 0.7f);
+        newEvent.SetMessage("You and your new mates discover " + bands[UnityEngine.Random.Range(0, bands.Length)] + ".");
         newEvent.SetSocial(1.9f);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(12,13), 14, 1);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(12f, 13), 14, 1);
         newEvent.SetMessage("You struggle a bit to make new friends.");
         newEvent.SetSocial(-0.8f);
         newEvent.SetMeaningChange(-1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(11.5f,17), 18, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(11.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You stay out past curfew.");
         newEvent.SetSocial(3f);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(11.5f,17), 18, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(11.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You have your first big argument with your parents.");
         newEvent.SetSocial(2f);
         newEvent.SetHappinessChange(-5);
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,17), 18, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You fall in love for the first time. It's a scary feeling.");
         newEvent.SetMeaningChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,17), 18, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You are invited to join the school's swimming team.");
         newEvent.SetExercise(3.5f);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,17), 18, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You stay up all night with a friend, just talking.");
         newEvent.SetMeaningChange(3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,17), 18, 0.5f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 17), 18, 0.5f);
         newEvent.SetMessage("You are offered a shoulder to cry on. It helps.");
         newEvent.SetHappiness(-30);
         newEvent.SetMeaningChange(6);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,18), 18, 1);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 18), 18, 1);
         newEvent.SetMessage("You are top of your class.");
         newEvent.SetWork(4.5f);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
-        
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,17), 18, 0.4f);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 17), 18, 0.4f);
         newEvent.SetMessage("You go ice skating. You fall over, and get up again.");
         newEvent.SetPlay(2.5f);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,16), 18, 1);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 16), 18, 1);
         newEvent.SetMessage("You watch your hundredth movie. It resonates.");
         newEvent.SetPlay(4.1f);
         newEvent.SetHappinessChange(-5);
         newEvent.SetMeaningChange(5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f,16), 18, 1);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(13.5f, 16), 18, 1);
         newEvent.SetMessage("You develop obsessions.");
         newEvent.SetPlay(6f);
         newEvent.SetMeaningChange(10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f,19), 20, 0.35f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f, 19), 20, 0.35f);
         newEvent.SetMessage("You cry for no reason and then laugh hysterically 5 minutes later.");
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f,19), 20, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f, 19), 20, 0.4f);
         newEvent.SetMessage("You pretend to like something just to fit in.");
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f,19), 20, 0.7f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f, 19), 20, 0.7f);
         newEvent.SetMessage("You get a part time job. The money is nice.");
         newEvent.SetMoney(30);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f,30), 30, 0.5f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f, 30), 30, 0.5f);
         newEvent.SetMessage("You and a stranger laugh hard at a huge toad.");
         newEvent.SetHappiness(70);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(4);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f,55), 56, 0.5f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f, 55), 56, 0.5f);
         newEvent.SetMessage("You lie in the sun for longer than you planned.");
         newEvent.SetHappiness(70);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(4);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f,21), 22, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(15.5f, 21), 22, 0.4f);
         newEvent.SetMessage("Your friend skims a rock all the way across a pond.");
         newEvent.SetSocial(3);
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f,55), 56, 0.2f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f, 55), 56, 0.2f);
         newEvent.SetMessage("It rains, but you have a surprisingly nice time inside.");
         newEvent.SetHappinessChange(5);
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f,55), 56, 0.1f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f, 55), 56, 0.1f);
         newEvent.SetMessage("You see someone who looks just like you.");
         newEvent.SetMeaningChange(2);
         dialogueEvents.Add(newEvent);
@@ -476,7 +485,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f,22), 23, 0.4f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(17.5f, 22), 23, 0.4f);
         newEvent.SetMessage("You get your heart broken. You pretend it's fine.");
         newEvent.SetSocial(2f);
         newEvent.SetHappinessChange(-15);
@@ -485,58 +494,58 @@ public class GameLogic : MonoBehaviour
 
         newEvent = new DialogueEvent(18, 20, 0.4f);
         newEvent.SetMessage("You move into student housing. The walls are thin.");
-        newEvent.SetWork(1f);
+        newEvent.SetWork(0.2f);
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.3f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 0.3f);
         newEvent.SetMessage("Do you like your degree?");
-        newEvent.SetWork(1f);
+        newEvent.SetWork(0.2f);
         newEvent.SetHappiness(-50);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 1);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 1);
         newEvent.SetMessage("You get your first job out of school. It's ok.");
-        newEvent.SetWork(-0.5f);
+        newEvent.SetWork(-0.2f);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 0.35f);
         newEvent.SetMessage("You skip breakfast and live off coffee for three days.");
         newEvent.SetHealthChange(-10);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 0.35f);
         newEvent.SetMessage("You hook up with someone at a party. You don't talk after.");
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 0.35f);
         newEvent.SetMessage("You sit in a lecture that changes how you see the world.");
-        newEvent.SetWork(1f);
+        newEvent.SetWork(0.2f);
         newEvent.SetMeaningChange(3);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f,20), 21, 0.35f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(18.5f, 20), 21, 0.35f);
         newEvent.SetMessage("You take a walk at night.");
         newEvent.SetMeaningChange(1);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f,21), 22, 0.5f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f, 21), 22, 0.5f);
         newEvent.SetMessage("It's your final year of study. You feel anxious sometimes.");
-        newEvent.SetWork(1.1f);
+        newEvent.SetWork(0.3f);
         newEvent.SetHappinessChange(-5);
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f,21), 22, 0.5f);
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(20.1f, 21), 22, 0.5f);
         newEvent.SetMessage("You submit your final assignment. Sleeping feels nice.");
-        newEvent.SetWork(1.1f);
+        newEvent.SetWork(0.3f);
         newEvent.SetHealthChange(-5);
         newEvent.SetHappinessChange(5);
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(21, 22, 0.5f);
         newEvent.SetMessage("There are a lot of people at your graduation.");
-        newEvent.SetWork(1.4f);
+        newEvent.SetWork(0.3f);
         newEvent.SetHappinessChange(5);
         dialogueEvents.Add(newEvent);
 
@@ -610,7 +619,7 @@ public class GameLogic : MonoBehaviour
         newEvent.SetHappinessChange(10f);
         newEvent.SetMeaningChange(4f);
         dialogueEvents.Add(newEvent);
-        
+
         newEvent = new DialogueEvent(29, 35, 0.1f);
         newEvent.SetMessage("You get a pet. You talk to them more than people.");
         newEvent.SetHappinessChange(20f);
@@ -885,12 +894,6 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            DOTween.KillAll();
-            SceneManager.LoadScene(3);
-        }
-        
         if (isPaused || forcedPause)
         {
             if (!pauseOverlay.activeSelf) pauseOverlay.SetActive(true);
@@ -924,7 +927,16 @@ public class GameLogic : MonoBehaviour
             {
                 workMultipliers[2] = past21MoneyMultiplier;
             }
-            Debug.Log("Cumulative values: "+cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
+            Debug.Log("Cumulative values: " + cumWork + "," + cumHobbies + "," + cumSocial + "," + cumExercise + "," + cumHappiness + "," + cumHealth + "," + cumMoney + "," + cumMeaning);
+        }
+
+        if (energyTweening && burnoutCounter < 2f)
+        {
+            burnoutCounter += Time.deltaTime;
+            if (burnoutCounter >= 2f)
+            {
+                Send("<b>ERROR:<b> You feel you are burning out.");
+            }
         }
 
     }
@@ -948,6 +960,7 @@ public class GameLogic : MonoBehaviour
         {
             energyTextTween.Kill();
             energyTweening = false;
+            burnoutCounter = 0f;
         }
     }
 
@@ -1014,7 +1027,7 @@ public class GameLogic : MonoBehaviour
         health += hltGain;
         money += monGain;
         meaning += mngGain;
-        
+
         //Debug.Log(hapGain);
     }
 
@@ -1235,4 +1248,25 @@ public class GameLogic : MonoBehaviour
         cumMoney = 0;
         cumMeaning = 0;
     }
+
+    void CheckAchievements()
+    {
+        if (!slots[6].GetAchieved() && cumSocial < 0.71f && year >= 40)
+        {
+            slots[6].SetAchieved();
+            PlayerPrefs.SetInt(achievements[6], 1);
+        }
+        if (!slots[5].GetAchieved() && cumExercise < 0.35f && year >= 20)
+        {
+            slots[5].SetAchieved();
+            PlayerPrefs.SetInt(achievements[5], 1);
+        }
+        if (!slots[7].GetAchieved() && cumWork >= 3.2f && year <= 11)
+        {
+            slots[7].SetAchieved();
+            PlayerPrefs.SetInt(achievements[7], 1);
+        }
+    }
+    
+
 }
