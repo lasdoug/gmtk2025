@@ -119,6 +119,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21920767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21920769}
+  - component: {fileID: 21920768}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Audio
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &21920768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21920767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baee194c1f1daf642862a3648fb625e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: startGame
+    clip: {fileID: 8300000, guid: acfc4e044abf5204b873bcc1512589fd, type: 3}
+    volume: 0.49
+    pitch: 1.09
+    loop: 0
+    source: {fileID: 0}
+  - name: menuClick
+    clip: {fileID: 8300000, guid: c7340e92bbb7b0b4ba446ecea9ea52f7, type: 3}
+    volume: 0.49
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death
+    clip: {fileID: 8300000, guid: 4db77cb76cb1c624faaddda079aeeffa, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: theme
+    clip: {fileID: 8300000, guid: 9206de36c6480c244b32bca96a6e3f89, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!4 &21920769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21920767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198428013
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +275,7 @@ GameObject:
   - component: {fileID: 324904883}
   - component: {fileID: 324904882}
   - component: {fileID: 324904884}
+  - component: {fileID: 324904885}
   m_Layer: 5
   m_Name: start
   m_TagString: Untagged
@@ -289,6 +359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 324904885}
+        m_TargetAssemblyTypeName: MainMenuSoundPlay, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &324904883
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -307,6 +389,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b6a70c7971dcdc4dafacc3e6b9d81b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &324904885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324904880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e93e1ee7f9f75e49b1ca6b90d5dd9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &369289545
@@ -716,6 +810,7 @@ GameObject:
   - component: {fileID: 1766983211}
   - component: {fileID: 1766983210}
   - component: {fileID: 1766983212}
+  - component: {fileID: 1766983213}
   m_Layer: 5
   m_Name: credits
   m_TagString: Untagged
@@ -787,6 +882,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1766983213}
+        m_TargetAssemblyTypeName: MainMenuClickPlay, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1766983212}
         m_TargetAssemblyTypeName: MainMenuSelect, Assembly-CSharp
         m_MethodName: SwitchScene
@@ -817,6 +924,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b6a70c7971dcdc4dafacc3e6b9d81b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766983213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766983208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0e20d99c7402946b711c597d480a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1837403855
@@ -1054,3 +1173,4 @@ SceneRoots:
   - {fileID: 1982078796}
   - {fileID: 369289549}
   - {fileID: 1572970424}
+  - {fileID: 21920769}
