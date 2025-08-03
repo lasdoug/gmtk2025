@@ -1,11 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class EndScreenHappiness : MonoBehaviour
 {
+    TextMeshProUGUI hText;
     void Start()
     {
-        print(Mathf.Floor(GameLogic.happiness));   
+        hText = GetComponent<TextMeshProUGUI>();
+        hText.text = Mathf.Floor(GameLogic.happiness).ToString();
     }
-
-
 }
