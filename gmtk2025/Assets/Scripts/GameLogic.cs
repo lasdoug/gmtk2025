@@ -344,7 +344,7 @@ public class GameLogic : MonoBehaviour
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(23, 40, 1f);
-        newEvent.SetMessage("You start a new personal project. It's " + hobbies[UnityEngine.Random.Range(0, hobbies.Length)] + ".");
+        newEvent.SetMessage("You start a new personal project. It's " + personalProjects[UnityEngine.Random.Range(0, personalProjects.Length)] + ".");
         newEvent.SetPlay(3.78f);
         newEvent.SetMeaningChange(10f);
         dialogueEvents.Add(newEvent);
@@ -419,7 +419,7 @@ public class GameLogic : MonoBehaviour
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(26, 38, 0.7f);
-        newEvent.SetMessage("You forget your friend's birthday");
+        newEvent.SetMessage("You forget your friend's birthday.");
         dialogueEvents.Add(newEvent);
 
         newEvent = new DialogueEvent(31, 39, 0.6f);
@@ -522,16 +522,86 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You finally say no without explaining why or feeling guilt");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(42, 61, 0.2f);
+        newEvent = new DialogueEvent(42, 59, 0.2f);
         newEvent.SetMessage("You start doing the thing you used to say you never had time for.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent(58, 63, 0.2f);
+        newEvent = new DialogueEvent(58, 59, 0.2f);
         newEvent.SetMessage("You wake up and feel excited. It surprises you.");
         dialogueEvents.Add(newEvent);
 
-        newEvent = new DialogueEvent();
-        newEvent.SetMessage("");
+        //senior dialogue
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You buy new dishes. Not because you need them, but because you want them.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You reconnect with old friends. You all look older.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You lose someone you thought would live forever.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You take better care of your body — not to change it, but to thank it.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You start growing things. Tomatoes, microgreens, patience.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You go to a high school reunion. No one is who you remember — not even you.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You get glasses. You actually like how they look.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You read books you never finished the first time.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You start mentoring someone younger. They listen.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You sit on a train with nowhere urgent to be.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You tell stories that make you smile and others cry.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You hold hands with someone you’ve loved for decades.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You find peace in routine, even when it’s slow.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You surprise yourself by learning something new.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You realize love doesn’t end — it changes form.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You find comfort in silence, and sometimes in company.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You say goodbye more times than you expected.");
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(60, 60, 1f);
+        newEvent.SetMessage("You close your eyes and feel the world one last time.");
         dialogueEvents.Add(newEvent);
 
         Debug.Log(dialogueEvents.Count);
