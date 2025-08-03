@@ -213,6 +213,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 463443174}
+  cumHappiness: 0
+  cumHealth: 0
+  cumMoney: 0
+  cumMeaning: 0
+  age: 0
   ageCompare: 0a0000002800000046000000
   cumHappinessCompare:
   - 100
@@ -625,7 +630,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.7607843, b: 0.039215688, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -707,6 +712,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 0}
+  cumHappiness: 0
+  cumHealth: 0
+  cumMoney: 0
+  cumMeaning: 0
+  age: 0
   ageCompare: 0a0000002800000046000000
   cumHappinessCompare:
   - 100
@@ -1188,8 +1198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000017583, y: 0}
-  m_SizeDelta: {x: 443.353, y: 135.8126}
+  m_AnchoredPosition: {x: 0.0000017583, y: 94}
+  m_SizeDelta: {x: 337.15, y: 135.8126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175842311
 MonoBehaviour:

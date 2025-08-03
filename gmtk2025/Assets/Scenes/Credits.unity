@@ -499,15 +499,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'loopmasterOS developers:
 
-    Louis
+    Jake Roberts
 
-    Jake
+    Louis Protano
 
     Doug
+    Choi
 
 
-    additional
-    writing by Sonya'
+
+
+    additional writing by Sonya Bleiph'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 204517d836830104098a8388d6fe1610, type: 2}
   m_sharedMaterial: {fileID: -626983983721006962, guid: 204517d836830104098a8388d6fe1610, type: 2}
@@ -534,8 +536,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

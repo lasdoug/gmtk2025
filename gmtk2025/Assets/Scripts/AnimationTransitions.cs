@@ -9,16 +9,27 @@ public class AnimationTransitions : MonoBehaviour
     [SerializeField] Color kidBkgColor, adultBkgColor, seniorBkgColor;
     Graphic guyBkg;
 
+    GameLogic gameLogic;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
+        gameLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameLogic>();
         guyBkg = GameObject.FindGameObjectWithTag("guyBkg").GetComponent<Graphic>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameLogic.isPaused == true)
+        {
+            animator.speed = 0f;
+        }
+        else
+        {
+            animator.speed = 1f;
+        }
         age = GameLogic.year;
 
         if (age < kidUpperBound)
