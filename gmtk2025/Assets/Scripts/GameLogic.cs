@@ -935,7 +935,7 @@ public class GameLogic : MonoBehaviour
 
         while (yearCounter >= yearLength)
         {
-            flatReductions[1] = (flatReductions[1] - 0.1f) * 1.1f;
+            if(year > 30) flatReductions[1] = (flatReductions[1] - 0.02f) * 1.03f;
             yearCounter -= yearLength;
             year++;
             ageText.text = "AGE: " + year;
