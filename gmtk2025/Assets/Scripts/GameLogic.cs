@@ -896,6 +896,51 @@ public class GameLogic : MonoBehaviour
         newEvent.SetMessage("You close your eyes and feel the world one last time.");
         dialogueEvents.Add(newEvent);
 
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,85), 120, 0.4f);
+        newEvent.SetMessage("Your kids have kids.");
+        newEvent.SetMeaningChange(7);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,90), 120, 0.35f);
+        newEvent.SetMessage("You struggle to keep up with new trends, but you want to.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,85), 120, 0.4f);
+        newEvent.SetMessage("You feel nostalgia for things you didn't even like.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,90), 120, 0.35f);
+        newEvent.SetMessage("You try a food that didn't exist 20 years ago. It is nice.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,85), 120, 0.4f);
+        newEvent.SetMessage("Your favourite clothes stop fitting for the first time since you were a kid.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(100, 120, 1f);
+        newEvent.SetMessage("The monarch sends you a letter. You need thicker glasses.");
+        newEvent.SetMeaningChange(5);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,85), 120, 0.4f);
+        newEvent.SetMessage("Your kids start having kids.");
+        newEvent.SetMeaningChange(1);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,90), 120, 0.4f);
+        newEvent.SetMessage("Everything reminds you of something.");
+        newEvent.SetMeaningChange(4);
+        dialogueEvents.Add(newEvent);
+
+        newEvent = new DialogueEvent(UnityEngine.Random.Range(60,90), 120, 0.4f);
+        newEvent.SetMessage("You meet a new, old person. You have a lot in common.");
+        newEvent.SetMeaningChange(4);
+        dialogueEvents.Add(newEvent);
+
         ReloadAchievements();
     }
 
