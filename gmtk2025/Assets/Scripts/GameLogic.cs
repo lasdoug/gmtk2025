@@ -1249,24 +1249,23 @@ public class GameLogic : MonoBehaviour
         cumMeaning = 0;
     }
 
-    void CheckAchievements()
-    {
-        if (!slots[6].GetAchieved() && cumSocial < 0.71f && year >= 40)
-        {
-            slots[6].SetAchieved();
-            PlayerPrefs.SetInt(achievements[6], 1);
-        }
-        if (!slots[5].GetAchieved() && cumExercise < 0.35f && year >= 20)
-        {
-            slots[5].SetAchieved();
-            PlayerPrefs.SetInt(achievements[5], 1);
-        }
-        if (!slots[7].GetAchieved() && cumWork >= 3.2f && year <= 11)
-        {
-            slots[7].SetAchieved();
-            PlayerPrefs.SetInt(achievements[7], 1);
-        }
-    }
-    
+    // void CheckAchievements()
+    // {
+    //     if (!slots[6].GetAchieved() && cumSocial < 0.71f && year >= 40)
+    //     {
+    //         slots[6].SetAchieved();
+    //         PlayerPrefs.SetInt(achievements[6], 1);
+    //     }
+    //     if (!slots[5].GetAchieved() && cumExercise < 0.35f && year >= 20)
+    //     {
+    //         slots[5].SetAchieved();
+    //         PlayerPrefs.SetInt(achievements[5], 1);
+    //     }
+    //     if (!slots[7].GetAchieved() && cumWork >= 3.2f && year <= 11)
+    //     {
+    //         slots[7].SetAchieved();
+    //         PlayerPrefs.SetInt(achievements[7], 1);
+    //     }
+    // }
 
 }
