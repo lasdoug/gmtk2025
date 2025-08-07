@@ -221,7 +221,7 @@ public class endScreenScript : MonoBehaviour
         }
         else
         {
-            cMeaning = "were zen like monk";
+            cMeaning = "achieved enlightenment.";
         }
 
         return "Score: " + cScore + "     " + " Age: " + age + "\nYou lived " + cAge + andButAgeHappy + "you were " + cHappy
