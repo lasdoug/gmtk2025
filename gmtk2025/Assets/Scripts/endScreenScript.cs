@@ -119,7 +119,7 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumHappiness < cumHappinessCompare[1])
         {
-            cHappy = "extremely sad";
+            cHappy = "had no friends";
         }
         else if (cumHappiness < cumHappinessCompare[2])
         {
@@ -127,19 +127,19 @@ public class endScreenScript : MonoBehaviour
         }
         else if (cumHappiness < cumHappinessCompare[3])
         {
-            cHappy = "kinda sad";
+            cHappy = "had a small friend group";
         }
         else if (cumHappiness < cumHappinessCompare[4])
         {
-            cHappy = "happy";
+            cHappy = "a happy person";
         }
         else if (cumHappiness < cumHappinessCompare[5])
         {
-            cHappy = "very happy";
+            cHappy = "very happy with loads of friends";
         }
         else if (cumHappiness < cumHappinessCompare[6])
         {
-            cHappy = "extremely happy";
+            cHappy = "extremely happy and popular";
         }
         else
         {
